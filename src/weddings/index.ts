@@ -7,7 +7,7 @@ export const weddings = {
 
 export const defaultWeddingSlug = "nithin-teju";
 
-export const normalizeWeddingSlug = (slug: string | undefined) => slug?.trim().toLowerCase().replace(/^\/+|\/+$/g, "");
+export const normalizeWeddingSlug = (slug: string | undefined) => slug?.trim().toLowerCase().replace(/^\/+|\/+$/g, "") ?? "";
 
 export const getWeddingBySlug = (slug: string | undefined): WeddingConfig | undefined => {
   const normalizedSlug = normalizeWeddingSlug(slug);
@@ -20,3 +20,5 @@ export const getWeddingBySlug = (slug: string | undefined): WeddingConfig | unde
 };
 
 export const getAvailableWeddings = () => Object.values(weddings);
+
+export const hasWeddingSlug = (slug: string | undefined) => Boolean(getWeddingBySlug(slug));

@@ -9,18 +9,35 @@ import { Story } from "./components/Story";
 import { Venues } from "./components/Venues";
 import { useEffect } from "react";
 import type { WeddingConfig } from "./types";
-import { defaultWeddingSlug, getAvailableWeddings, getWeddingBySlug, normalizeWeddingSlug } from "./weddings";
+import {
+  defaultWeddingSlug,
+  getAvailableWeddings,
+  getWeddingBySlug,
+  hasWeddingSlug,
+  normalizeWeddingSlug,
+} from "./weddings";
 
 const getRequestedWeddingSlug = (): string => {
-  const envSlug =
-    typeof import.meta.env.VITE_WEDDING_SLUG === "string" ? import.meta.env.VITE_WEDDING_SLUG : undefined;
+  const [pathSlugValue] = window.location.pathname.split("/").filter(Boolean);
+  const pathSlug = normalizeWeddingSlug(pathSlugValue);
 
-  if (envSlug) {
-    return normalizeWeddingSlug(envSlug) || defaultWeddingSlug;
+  if (hasWeddingSlug(pathSlug)) {
+    return pathSlug;
   }
 
-  const [pathSlug] = window.location.pathname.split("/").filter(Boolean);
-  return normalizeWeddingSlug(pathSlug) || defaultWeddingSlug;
+  const envSlug =
+    typeof import.meta.env.VITE_WEDDING_SLUG === "string" ? import.meta.env.VITE_WEDDING_SLUG : undefined;
+  const normalizedEnvSlug = normalizeWeddingSlug(envSlug);
+
+  if (hasWeddingSlug(normalizedEnvSlug)) {
+    return normalizedEnvSlug;
+  }
+
+  if (pathSlug) {
+    return pathSlug;
+  }
+
+  return defaultWeddingSlug;
 };
 
 function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
