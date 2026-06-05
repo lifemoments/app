@@ -31,6 +31,7 @@ export type MediaItem = {
 };
 
 export type WeddingConfig = {
+  slug: string;
   couple: {
     partnerOne: string;
     partnerTwo: string;

@@ -687,6 +687,49 @@ legend {
   color: #ffc9d1;
 }
 
+.not-found {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 32px;
+  background: #fffaf5;
+}
+
+.not-found section {
+  width: min(760px, 100%);
+}
+
+.not-found h1 {
+  max-width: none;
+  color: var(--ink);
+  font-size: clamp(3rem, 10vw, 7rem);
+}
+
+.not-found p {
+  color: var(--muted);
+  font-size: 1.12rem;
+}
+
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.not-found-links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--accent);
+  color: white;
+  font-weight: 900;
+  text-decoration: none;
+}
+
 @media (max-width: 840px) {
   .site-header {
     align-items: flex-start;

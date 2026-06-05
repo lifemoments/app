@@ -7,9 +7,26 @@ import { LiveStream } from "./components/LiveStream";
 import { Rsvp } from "./components/Rsvp";
 import { Story } from "./components/Story";
 import { Venues } from "./components/Venues";
-import { wedding } from "./config/wedding";
+import { useEffect } from "react";
+import type { WeddingConfig } from "./types";
+import { defaultWeddingSlug, getAvailableWeddings, getWeddingBySlug } from "./weddings";
 
-export function App() {
+const getRequestedWeddingSlug = () => {
+  const envSlug = import.meta.env.VITE_WEDDING_SLUG;
+
+  if (envSlug) {
+    return envSlug;
+  }
+
+  const [pathSlug] = window.location.pathname.split("/").filter(Boolean);
+  return pathSlug || defaultWeddingSlug;
+};
+
+function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
+  useEffect(() => {
+    document.title = `${wedding.couple.displayNames} Wedding`;
+  }, [wedding.couple.displayNames]);
+
   return (
     <>
       <Header wedding={wedding} />
@@ -25,4 +42,36 @@ export function App() {
       <Footer wedding={wedding} />
     </>
   );
+}
+
+function WeddingNotFound({ slug }: { slug: string }) {
+  const availableWeddings = getAvailableWeddings();
+
+  return (
+    <main className="not-found">
+      <section>
+        <p className="eyebrow">Wedding not found</p>
+        <h1>{slug}</h1>
+        <p>Choose one of the configured wedding websites.</p>
+        <div className="not-found-links">
+          {availableWeddings.map((wedding) => (
+            <a key={wedding.slug} href={`/${wedding.slug}`}>
+              {wedding.couple.displayNames}
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+export function App() {
+  const requestedSlug = getRequestedWeddingSlug();
+  const wedding = getWeddingBySlug(requestedSlug);
+
+  if (!wedding) {
+    return <WeddingNotFound slug={requestedSlug} />;
+  }
+
+  return <WeddingSite wedding={wedding} />;
 }

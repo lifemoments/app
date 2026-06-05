@@ -19,8 +19,9 @@ const emptySubmission = (eventIds: string[]): RsvpSubmission => ({
 
 export function Rsvp({ wedding }: RsvpProps) {
   const eventIds = useMemo(() => wedding.events.map((event) => event.id), [wedding.events]);
+  const storageKey = `wedding-rsvp:${wedding.slug}`;
   const [submission, setSubmission] = useState<RsvpSubmission>(() => {
-    const saved = window.localStorage.getItem("wedding-rsvp");
+    const saved = window.localStorage.getItem(storageKey);
     return saved ? JSON.parse(saved) : emptySubmission(eventIds);
   });
   const [status, setStatus] = useState<"idle" | "saved" | "sending" | "sent" | "error">("idle");
@@ -41,7 +42,7 @@ export function Rsvp({ wedding }: RsvpProps) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus(wedding.rsvp.formEndpoint ? "sending" : "saved");
-    window.localStorage.setItem("wedding-rsvp", JSON.stringify(submission));
+    window.localStorage.setItem(storageKey, JSON.stringify(submission));
 
     if (!wedding.rsvp.formEndpoint) {
       return;
