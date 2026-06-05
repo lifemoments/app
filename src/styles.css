@@ -977,7 +977,30 @@ legend {
   }
 
   .event-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
     min-height: 0;
+    background: var(--paper);
+  }
+
+  .event-card img {
+    width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: cover;
+  }
+
+  .event-body {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 16px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .event-body h3 {
+    color: var(--ink);
   }
 
   .event-body ul {
@@ -986,7 +1009,14 @@ legend {
 
   .event-body li {
     align-items: flex-start;
+    color: var(--ink);
     font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .event-note {
+    margin: 0;
+    color: var(--muted);
   }
 
   .rsvp-form {

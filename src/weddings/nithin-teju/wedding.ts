@@ -82,13 +82,13 @@ export const nithinTejuWedding: WeddingConfig = {
     {
       id: "engagement-portrait",
       type: "photo",
-      title: "Engagement Portrait",
+      title: "Memories",
       src: "/weddings/nithin-teju/gallery/engagement-portrait.jpeg",
     },
     {
       id: "proposal",
       type: "photo",
-      title: "The Proposal",
+      title: "Moments",
       src: "/weddings/nithin-teju/gallery/the-proposal.jpeg",
     },
     {
