@@ -13,9 +13,12 @@ const emptySubmission = (eventIds: string[]): RsvpSubmission => ({
   phone: "",
   attendance: "yes",
   guests: 1,
-  selectedEvents: eventIds,
+  selectedEvents: [],
   message: "",
 });
+
+const minGuests = 1;
+const maxGuests = 20;
 
 const getGoogleFormActionUrl = (formUrl: string) => formUrl.split("/viewform")[0] + "/formResponse";
 
@@ -46,6 +49,7 @@ export function Rsvp({ wedding }: RsvpProps) {
     return saved ? JSON.parse(saved) : emptySubmission(eventIds);
   });
   const [status, setStatus] = useState<"idle" | "saved" | "sending" | "sent" | "error">("idle");
+  const [validationError, setValidationError] = useState("");
 
   const update = <K extends keyof RsvpSubmission>(key: K, value: RsvpSubmission[K]) => {
     setSubmission((current) => ({ ...current, [key]: value }));
@@ -62,6 +66,28 @@ export function Rsvp({ wedding }: RsvpProps) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!submission.name.trim()) {
+      setValidationError("Please enter your full name.");
+      return;
+    }
+
+    if (!submission.email.trim()) {
+      setValidationError("Please enter your email.");
+      return;
+    }
+
+    if (submission.selectedEvents.length === 0) {
+      setValidationError("Please choose at least one event.");
+      return;
+    }
+
+    if (submission.guests < minGuests || submission.guests > maxGuests) {
+      setValidationError(`Please choose between ${minGuests} and ${maxGuests} guests.`);
+      return;
+    }
+
+    setValidationError("");
     setStatus(wedding.rsvp.formEndpoint || hasGoogleFormDirectSubmit ? "sending" : "saved");
     window.localStorage.setItem(storageKey, JSON.stringify(submission));
 
@@ -177,6 +203,7 @@ export function Rsvp({ wedding }: RsvpProps) {
           <label>
             Phone
             <input
+              required
               value={submission.phone}
               onChange={(event) => update("phone", event.target.value)}
               placeholder="+1 555 000 0000"
@@ -189,7 +216,7 @@ export function Rsvp({ wedding }: RsvpProps) {
                 <Minus size={16} />
               </button>
               <output>{submission.guests}</output>
-              <button type="button" aria-label="Increase guests" onClick={() => update("guests", submission.guests + 1)}>
+              <button type="button" aria-label="Increase guests" onClick={() => update("guests", Math.min(maxGuests, submission.guests + 1))}>
                 <Plus size={16} />
               </button>
             </div>
@@ -200,6 +227,7 @@ export function Rsvp({ wedding }: RsvpProps) {
           {(["yes", "maybe", "no"] as Attendance[]).map((option) => (
             <label key={option}>
               <input
+                required
                 type="radio"
                 name="attendance"
                 checked={submission.attendance === option}
@@ -214,6 +242,7 @@ export function Rsvp({ wedding }: RsvpProps) {
           {wedding.events.map((event) => (
             <label key={event.id}>
               <input
+                required={submission.selectedEvents.length === 0}
                 type="checkbox"
                 checked={submission.selectedEvents.includes(event.id)}
                 onChange={() => toggleEvent(event.id)}
@@ -222,14 +251,6 @@ export function Rsvp({ wedding }: RsvpProps) {
             </label>
           ))}
         </fieldset>
-        <label>
-          Message
-          <textarea
-            value={submission.message}
-            onChange={(event) => update("message", event.target.value)}
-            placeholder="Meal notes, blessings, song requests..."
-          />
-        </label>
         <div className="form-actions">
           <button type="submit" className="primary-button">
             <Send size={18} />
@@ -245,6 +266,12 @@ export function Rsvp({ wedding }: RsvpProps) {
               {status === "sending" && "Sending RSVP..."}
               {status === "sent" && "RSVP sent."}
               {status === "error" && `Saved locally. Please contact ${wedding.rsvp.contactName} at ${wedding.rsvp.contactPhone}.`}
+            </p>
+          )}
+          {validationError && (
+            <p className="form-status error">
+              <CheckCircle2 size={18} />
+              {validationError}
             </p>
           )}
         </div>
