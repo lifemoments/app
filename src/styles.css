@@ -411,6 +411,41 @@ h3 {
   background: rgba(255, 255, 255, 0.07);
 }
 
+.google-rsvp {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1.45fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.google-rsvp-copy,
+.google-form-frame {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.google-rsvp-copy {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  padding: 26px;
+}
+
+.google-rsvp-copy p {
+  margin: 0;
+  color: rgba(255, 250, 245, 0.78);
+  line-height: 1.6;
+}
+
+.google-form-frame iframe {
+  width: 100%;
+  height: 720px;
+  border: 0;
+  background: var(--paper);
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -777,6 +812,7 @@ legend {
   .event-card,
   .event-grid,
   .form-grid,
+  .google-rsvp,
   .media-grid,
   .live-layout,
   .venue-grid {
@@ -956,6 +992,14 @@ legend {
   .rsvp-form {
     gap: 18px;
     padding: 18px;
+  }
+
+  .google-rsvp-copy {
+    padding: 20px;
+  }
+
+  .google-form-frame iframe {
+    height: 680px;
   }
 
   fieldset {

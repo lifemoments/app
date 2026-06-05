@@ -110,6 +110,28 @@ You have two clean options:
 
 By default, RSVP submissions are saved in the visitor's browser with `localStorage` so the flow works without a backend.
 
+For a free production RSVP flow, use Google Forms:
+
+1. Go to `https://forms.google.com`.
+2. Create a blank form named something like `Nithin & Tejaswini RSVP`.
+3. Add fields such as name, email, phone, attendance, guest count, events attending, meal notes, and message.
+4. Click **Responses** and connect it to a Google Sheet.
+5. Click **Send**.
+6. Copy the regular form link into `googleFormUrl`.
+7. Choose the embed tab `<>`, copy the iframe `src` URL, and paste it into `googleFormEmbedUrl`.
+
+Example:
+
+```ts
+rsvp: {
+  deadline: "2026-08-15",
+  contactName: "Yash",
+  contactPhone: "+1 469-996-4010",
+  googleFormUrl: "https://forms.gle/your-form-link",
+  googleFormEmbedUrl: "https://docs.google.com/forms/d/e/your-form-id/viewform?embedded=true",
+}
+```
+
 To collect real submissions, set `rsvp.formEndpoint` in that wedding's `wedding.ts` file to a POST endpoint from Formspree, Basin, Netlify Forms, your own API, or any compatible service.
 
 ## Maps

@@ -80,6 +80,8 @@ export type WeddingConfig = {
     deadline: string;
     contactName: string;
     contactPhone: string;
+    googleFormUrl?: string;
+    googleFormEmbedUrl?: string;
     formEndpoint?: string;
   };
 };

@@ -57,3 +57,19 @@ theme: {
 ```
 
 Theme definitions live in `src/themes.ts`.
+
+## RSVP
+
+For free RSVP collection, use Google Forms. Add the public link and optional embed link to the wedding config:
+
+```ts
+rsvp: {
+  deadline: "2026-08-15",
+  contactName: "Yash",
+  contactPhone: "+1 469-996-4010",
+  googleFormUrl: "https://forms.gle/your-form-link",
+  googleFormEmbedUrl: "https://docs.google.com/forms/d/e/your-form-id/viewform?embedded=true",
+}
+```
+
+Leave both fields empty only for local demo RSVP behavior.

@@ -109,5 +109,9 @@ export const nithinTejuWedding: WeddingConfig = {
     deadline: "2026-08-15",
     contactName: "Yash",
     contactPhone: "+1 469-996-4010",
+    googleFormUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSftaxwdHRtQc6H5BRk2DT9zWrbzeaowBzrMR6XAbpknZPauzA/viewform?usp=publish-editor",
+    googleFormEmbedUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSftaxwdHRtQc6H5BRk2DT9zWrbzeaowBzrMR6XAbpknZPauzA/viewform?embedded=true",
   },
 };

@@ -1,4 +1,4 @@
-import { CheckCircle2, Mail, Minus, Plus, Send } from "lucide-react";
+import { CheckCircle2, ExternalLink, Mail, Minus, Plus, Send } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 import type { Attendance, RsvpSubmission, WeddingConfig } from "../types";
 import { formatDate } from "../lib/date";
@@ -18,6 +18,8 @@ const emptySubmission = (eventIds: string[]): RsvpSubmission => ({
 });
 
 export function Rsvp({ wedding }: RsvpProps) {
+  const isGoogleFormRsvp = Boolean(wedding.rsvp.googleFormUrl || wedding.rsvp.googleFormEmbedUrl);
+  const googleFormUrl = wedding.rsvp.googleFormUrl ?? wedding.rsvp.googleFormEmbedUrl;
   const eventIds = useMemo(() => wedding.events.map((event) => event.id), [wedding.events]);
   const storageKey = `wedding-rsvp:${wedding.slug}`;
   const [submission, setSubmission] = useState<RsvpSubmission>(() => {
@@ -67,6 +69,29 @@ export function Rsvp({ wedding }: RsvpProps) {
         <p className="eyebrow">RSVP</p>
         <h2>Save your seat by {formatDate(wedding.rsvp.deadline)}.</h2>
       </div>
+      {isGoogleFormRsvp && googleFormUrl ? (
+        <div className="google-rsvp">
+          <div className="google-rsvp-copy">
+            <h3>RSVP through Google Forms</h3>
+            <p>
+              Your response will be collected securely in the wedding RSVP spreadsheet. Please submit one response per
+              household.
+            </p>
+            <a className="primary-button" href={googleFormUrl} target="_blank" rel="noreferrer">
+              <Send size={18} />
+              Open RSVP Form
+              <ExternalLink size={16} />
+            </a>
+          </div>
+          {wedding.rsvp.googleFormEmbedUrl && (
+            <div className="google-form-frame">
+              <iframe src={wedding.rsvp.googleFormEmbedUrl} title={`${wedding.couple.displayNames} RSVP form`}>
+                Loading...
+              </iframe>
+            </div>
+          )}
+        </div>
+      ) : (
       <form className="rsvp-form" onSubmit={handleSubmit}>
         <div className="form-grid">
           <label>
@@ -163,6 +188,7 @@ export function Rsvp({ wedding }: RsvpProps) {
           )}
         </div>
       </form>
+      )}
     </section>
   );
 }

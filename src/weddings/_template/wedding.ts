@@ -45,5 +45,7 @@ export const templateWedding: WeddingConfig = {
     deadline: "2026-08-01",
     contactName: "Contact Name",
     contactPhone: "+1 555-010-0000",
+    googleFormUrl: "",
+    googleFormEmbedUrl: "",
   },
 };
