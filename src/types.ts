@@ -49,6 +49,21 @@ export type WeddingThemeConfig = {
   overrides?: WeddingThemeOverrides;
 };
 
+export type GoogleFormFieldIds = {
+  fullName: string;
+  email: string;
+  phone?: string;
+  attendance: string;
+  guests: string;
+  events: string;
+  message?: string;
+};
+
+export type GoogleFormOptionLabels = {
+  attendance?: Partial<Record<Attendance, string>>;
+  events?: Record<string, string>;
+};
+
 export type WeddingConfig = {
   slug: string;
   couple: {
@@ -82,6 +97,8 @@ export type WeddingConfig = {
     contactPhone: string;
     googleFormUrl?: string;
     googleFormEmbedUrl?: string;
+    googleFormFieldIds?: GoogleFormFieldIds;
+    googleFormOptionLabels?: GoogleFormOptionLabels;
     formEndpoint?: string;
   };
 };

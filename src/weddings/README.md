@@ -73,3 +73,19 @@ rsvp: {
 ```
 
 Leave both fields empty only for local demo RSVP behavior.
+
+To use the site's custom RSVP form instead of embedding Google Forms, also add:
+
+```ts
+googleFormFieldIds: {
+  fullName: "entry.111111111",
+  email: "entry.222222222",
+  phone: "entry.333333333",
+  attendance: "entry.444444444",
+  guests: "entry.555555555",
+  events: "entry.666666666",
+  message: "entry.777777777",
+}
+```
+
+Find these by opening the published Google Form, choosing **View Page Source**, and searching for each question label.

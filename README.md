@@ -132,6 +132,32 @@ rsvp: {
 }
 ```
 
+### Use the custom RSVP design with Google Forms
+
+The site can keep its own RSVP design and still send responses into Google Forms. To enable that, add the Google Forms hidden field IDs:
+
+```ts
+googleFormFieldIds: {
+  fullName: "entry.111111111",
+  email: "entry.222222222",
+  phone: "entry.333333333",
+  attendance: "entry.444444444",
+  guests: "entry.555555555",
+  events: "entry.666666666",
+  message: "entry.777777777",
+}
+```
+
+How to find the IDs:
+
+1. Open the published Google Form.
+2. Right-click the page and choose **View Page Source**.
+3. Search for your question text, such as `Full name`.
+4. Nearby you will see an ID like `entry.123456789`.
+5. Repeat for each question and paste those IDs into the wedding config.
+
+The choice labels in `googleFormOptionLabels` must exactly match the Google Form options.
+
 To collect real submissions, set `rsvp.formEndpoint` in that wedding's `wedding.ts` file to a POST endpoint from Formspree, Basin, Netlify Forms, your own API, or any compatible service.
 
 ## Maps

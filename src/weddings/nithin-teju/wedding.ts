@@ -113,5 +113,25 @@ export const nithinTejuWedding: WeddingConfig = {
       "https://docs.google.com/forms/d/e/1FAIpQLSftaxwdHRtQc6H5BRk2DT9zWrbzeaowBzrMR6XAbpknZPauzA/viewform?usp=publish-editor",
     googleFormEmbedUrl:
       "https://docs.google.com/forms/d/e/1FAIpQLSftaxwdHRtQc6H5BRk2DT9zWrbzeaowBzrMR6XAbpknZPauzA/viewform?embedded=true",
+    googleFormFieldIds: {
+      fullName: "entry.280492329",
+      email: "entry.508149769",
+      phone: "entry.968995082",
+      attendance: "entry.716561151",
+      guests: "entry.625161931",
+      events: "entry.801008396",
+    },
+    googleFormOptionLabels: {
+      attendance: {
+        yes: "Yes, I will attend",
+        maybe: "Maybe",
+        no: "Sorry, I cannot attend",
+      },
+      events: {
+        haldi: "Haldi",
+        wedding: "Wedding Ceremony",
+        reception: "Reception & Cocktail Party",
+      },
+    },
   },
 };

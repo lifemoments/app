@@ -17,8 +17,27 @@ const emptySubmission = (eventIds: string[]): RsvpSubmission => ({
   message: "",
 });
 
+const getGoogleFormActionUrl = (formUrl: string) => formUrl.split("/viewform")[0] + "/formResponse";
+
+const appendIfPresent = (data: FormData, key: string | undefined, value: string | number | undefined) => {
+  if (key && value !== undefined && String(value).trim()) {
+    data.append(key, String(value));
+  }
+};
+
+const hasRequiredGoogleFormFields = (rsvp: WeddingConfig["rsvp"]) =>
+  Boolean(
+    rsvp.googleFormUrl &&
+      rsvp.googleFormFieldIds?.fullName &&
+      rsvp.googleFormFieldIds.email &&
+      rsvp.googleFormFieldIds.attendance &&
+      rsvp.googleFormFieldIds.guests &&
+      rsvp.googleFormFieldIds.events,
+  );
+
 export function Rsvp({ wedding }: RsvpProps) {
-  const isGoogleFormRsvp = Boolean(wedding.rsvp.googleFormUrl || wedding.rsvp.googleFormEmbedUrl);
+  const hasGoogleFormDirectSubmit = hasRequiredGoogleFormFields(wedding.rsvp);
+  const isGoogleFormRsvp = !hasGoogleFormDirectSubmit && Boolean(wedding.rsvp.googleFormUrl || wedding.rsvp.googleFormEmbedUrl);
   const googleFormUrl = wedding.rsvp.googleFormUrl ?? wedding.rsvp.googleFormEmbedUrl;
   const eventIds = useMemo(() => wedding.events.map((event) => event.id), [wedding.events]);
   const storageKey = `wedding-rsvp:${wedding.slug}`;
@@ -43,8 +62,42 @@ export function Rsvp({ wedding }: RsvpProps) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setStatus(wedding.rsvp.formEndpoint ? "sending" : "saved");
+    setStatus(wedding.rsvp.formEndpoint || hasGoogleFormDirectSubmit ? "sending" : "saved");
     window.localStorage.setItem(storageKey, JSON.stringify(submission));
+
+    if (wedding.rsvp.googleFormUrl && wedding.rsvp.googleFormFieldIds) {
+      const fieldIds = wedding.rsvp.googleFormFieldIds;
+      const optionLabels = wedding.rsvp.googleFormOptionLabels;
+      const formData = new FormData();
+
+      appendIfPresent(formData, fieldIds.fullName, submission.name);
+      appendIfPresent(formData, fieldIds.email, submission.email);
+      appendIfPresent(formData, fieldIds.phone, submission.phone);
+      appendIfPresent(
+        formData,
+        fieldIds.attendance,
+        optionLabels?.attendance?.[submission.attendance] ?? submission.attendance,
+      );
+      appendIfPresent(formData, fieldIds.guests, submission.guests);
+      appendIfPresent(formData, fieldIds.message, submission.message);
+
+      submission.selectedEvents.forEach((eventId) => {
+        appendIfPresent(formData, fieldIds.events, optionLabels?.events?.[eventId] ?? eventId);
+      });
+
+      try {
+        await fetch(getGoogleFormActionUrl(wedding.rsvp.googleFormUrl), {
+          method: "POST",
+          mode: "no-cors",
+          body: formData,
+        });
+        setStatus("sent");
+      } catch {
+        setStatus("error");
+      }
+
+      return;
+    }
 
     if (!wedding.rsvp.formEndpoint) {
       return;
