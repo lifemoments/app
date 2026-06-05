@@ -83,21 +83,19 @@ export const nithinTejuWedding: WeddingConfig = {
       id: "engagement-portrait",
       type: "photo",
       title: "Engagement Portrait",
-      src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80",
+      src: "/weddings/nithin-teju/gallery/engagement-portrait.jpeg",
     },
     {
       id: "proposal",
       type: "photo",
       title: "The Proposal",
-      src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+      src: "/weddings/nithin-teju/gallery/the-proposal.jpeg",
     },
     {
       id: "save-the-date",
-      type: "youtube",
-      title: "Save the Date Film",
-      src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      poster:
-        "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1200&q=80",
+      type: "film",
+      title: "Save the Date Film - August 29, 2026",
+      src: "/weddings/nithin-teju/gallery/save-the-date-film.jpeg",
     },
   ],
   livestream: {

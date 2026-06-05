@@ -32,7 +32,7 @@ export function Gallery({ items }: GalleryProps) {
             <button className="icon-button" type="button" aria-label="Close media" onClick={() => setActiveItem(null)}>
               <X size={20} />
             </button>
-            {activeItem.type === "photo" ? (
+            {activeItem.type === "photo" || activeItem.type === "film" ? (
               <img src={activeItem.src} alt={activeItem.title} />
             ) : (
               <iframe

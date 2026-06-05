@@ -24,7 +24,7 @@ export type WeddingEvent = {
 
 export type MediaItem = {
   id: string;
-  type: "photo" | "video" | "youtube";
+  type: "photo" | "film" | "video" | "youtube";
   title: string;
   src: string;
   poster?: string;
