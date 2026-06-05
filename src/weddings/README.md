@@ -15,7 +15,8 @@ The shared website engine reads a `WeddingConfig` object from each folder. To ad
 1. Copy `src/weddings/_template/wedding.ts` into a new slug folder.
 2. Rename the exported constant.
 3. Set a unique `slug`.
-4. Register it in `src/weddings/index.ts`.
+4. Choose a `theme.name` or add `theme.overrides`.
+5. Register it in `src/weddings/index.ts`.
 
 The slug is the public URL segment when hosting multiple weddings from one Vercel project, for example `/nithin-teju`.
 
@@ -24,3 +25,35 @@ For a dedicated Vercel project per wedding, set this environment variable:
 ```text
 VITE_WEDDING_SLUG=nithin-teju
 ```
+
+## Themes
+
+Available theme presets:
+
+- `rose`
+- `emerald`
+- `royal`
+- `coastal`
+- `midnight`
+
+Use a preset for each wedding:
+
+```ts
+theme: {
+  name: "royal",
+}
+```
+
+Or override specific tokens:
+
+```ts
+theme: {
+  name: "midnight",
+  overrides: {
+    accent: "#c9973d",
+    dark: "#151821",
+  },
+}
+```
+
+Theme definitions live in `src/themes.ts`.

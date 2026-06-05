@@ -12,6 +12,9 @@ export const templateWedding: WeddingConfig = {
   weddingDate: "2026-08-29T09:30:00-07:00",
   heroImage:
     "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=85",
+  theme: {
+    name: "emerald",
+  },
   accent: "#b24b5a",
   invitation: {
     greeting: "With full hearts, we invite you",

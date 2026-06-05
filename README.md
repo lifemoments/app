@@ -36,6 +36,7 @@ Update these fields for each marriage:
 - `couple`: names, tagline, and story.
 - `weddingDate`: the main date used by the countdown.
 - `heroImage`: first-screen background image.
+- `theme`: visual preset and optional color overrides.
 - `events`: add Haldi, Engagement, Wedding, Reception, Cocktail, Sangeet, or any custom event.
 - `gallery`: photos, videos, and YouTube embeds.
 - `livestream`: YouTube live video id and start time.
@@ -47,6 +48,43 @@ Update these fields for each marriage:
 2. Change `slug` to the folder name, for example `arya-dev`.
 3. Update names, dates, events, gallery, livestream, RSVP, and venues.
 4. Register the config in `src/weddings/index.ts`.
+
+## Change the theme per wedding
+
+Each wedding config has a `theme` field:
+
+```ts
+theme: {
+  name: "emerald",
+}
+```
+
+Available presets:
+
+```text
+rose
+emerald
+royal
+coastal
+midnight
+```
+
+For a custom look, keep a preset and override only the colors you need:
+
+```ts
+theme: {
+  name: "coastal",
+  overrides: {
+    accent: "#0f7287",
+    paper: "#fbfffd",
+    band: "#e6f2f0",
+    dark: "#18343b",
+    darkAccent: "#c9f3f4",
+  },
+}
+```
+
+This keeps the components reusable while letting every wedding have its own mood.
 
 Example registry entry:
 

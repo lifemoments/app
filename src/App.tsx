@@ -8,6 +8,7 @@ import { Rsvp } from "./components/Rsvp";
 import { Story } from "./components/Story";
 import { Venues } from "./components/Venues";
 import { useEffect } from "react";
+import { getThemeStyle } from "./themes";
 import type { WeddingConfig } from "./types";
 import {
   defaultWeddingSlug,
@@ -46,7 +47,7 @@ function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
   }, [wedding.couple.displayNames]);
 
   return (
-    <>
+    <div className={`wedding-app theme-${wedding.theme.name}`} style={getThemeStyle(wedding.theme.name, wedding.theme.overrides)}>
       <Header wedding={wedding} />
       <main>
         <Hero wedding={wedding} />
@@ -58,7 +59,7 @@ function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
         <Venues events={wedding.events} />
       </main>
       <Footer wedding={wedding} />
-    </>
+    </div>
   );
 }
 

@@ -30,6 +30,25 @@ export type MediaItem = {
   poster?: string;
 };
 
+export type WeddingThemeName = "rose" | "emerald" | "royal" | "coastal" | "midnight";
+
+export type WeddingThemeOverrides = {
+  accent?: string;
+  ink?: string;
+  muted?: string;
+  paper?: string;
+  page?: string;
+  band?: string;
+  dark?: string;
+  darkAccent?: string;
+  heroOverlay?: string;
+};
+
+export type WeddingThemeConfig = {
+  name: WeddingThemeName;
+  overrides?: WeddingThemeOverrides;
+};
+
 export type WeddingConfig = {
   slug: string;
   couple: {
@@ -41,6 +60,10 @@ export type WeddingConfig = {
   };
   weddingDate: string;
   heroImage: string;
+  theme: WeddingThemeConfig;
+  /**
+   * @deprecated Use theme.overrides.accent for new weddings.
+   */
   accent: string;
   invitation: {
     greeting: string;

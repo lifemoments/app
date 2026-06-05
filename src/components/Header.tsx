@@ -1,5 +1,4 @@
 import { CalendarDays, Heart, MapPin, PlayCircle, Send, Sparkles } from "lucide-react";
-import type { CSSProperties } from "react";
 import type { WeddingConfig } from "../types";
 
 type HeaderProps = {
@@ -16,7 +15,7 @@ const links = [
 
 export function Header({ wedding }: HeaderProps) {
   return (
-    <header className="site-header" style={{ "--accent": wedding.accent } as CSSProperties}>
+    <header className="site-header">
       <a className="brand" href="#home" aria-label="Go to top">
         <Heart size={18} fill="currentColor" />
         <span>{wedding.couple.displayNames}</span>

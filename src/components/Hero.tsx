@@ -25,7 +25,6 @@ export function Hero({ wedding }: HeroProps) {
       style={
         {
           "--hero-image": `url(${wedding.heroImage})`,
-          "--accent": wedding.accent,
         } as CSSProperties
       }
     >
