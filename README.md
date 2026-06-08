@@ -37,6 +37,7 @@ Update these fields for each marriage:
 - `weddingDate`: the main date used by the countdown.
 - `heroImage`: first-screen background image.
 - `theme`: visual preset and optional color overrides.
+- `entryInvitation`: optional animated envelope shown before the website.
 - `events`: add Haldi, Engagement, Wedding, Reception, Cocktail, Sangeet, or any custom event.
 - `gallery`: photos, videos, and YouTube embeds.
 - `livestream`: YouTube live video id and start time.
@@ -85,6 +86,23 @@ theme: {
 ```
 
 This keeps the components reusable while letting every wedding have its own mood.
+
+## Animated invitation
+
+Each wedding can show an animated envelope before the main website:
+
+```ts
+entryInvitation: {
+  enabled: true,
+  eyebrow: "A celebration awaits",
+  message: "Together with their families, invite you to celebrate their wedding.",
+  openLabel: "Open invitation",
+  backgroundImage: "/weddings/couple-slug/gallery/save-the-date.png",
+  rememberForSession: true,
+}
+```
+
+Set `rememberForSession` to `false` to replay the envelope after every page refresh. Set `enabled` to `false` to skip the opening entirely.
 
 Example registry entry:
 

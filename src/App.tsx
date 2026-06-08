@@ -3,11 +3,12 @@ import { Footer } from "./components/Footer";
 import { Gallery } from "./components/Gallery";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { InvitationGate } from "./components/InvitationGate";
 import { LiveStream } from "./components/LiveStream";
 import { Rsvp } from "./components/Rsvp";
 import { Story } from "./components/Story";
 import { Venues } from "./components/Venues";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getThemeStyle } from "./themes";
 import type { WeddingConfig } from "./types";
 import {
@@ -42,12 +43,30 @@ const getRequestedWeddingSlug = (): string => {
 };
 
 function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
+  const invitationStorageKey = `wedding-invitation-opened:${wedding.slug}`;
+  const rememberForSession = wedding.entryInvitation?.rememberForSession ?? true;
+  const [isInvitationOpen, setIsInvitationOpen] = useState(() => {
+    if (!wedding.entryInvitation?.enabled) {
+      return true;
+    }
+
+    return rememberForSession && window.sessionStorage.getItem(invitationStorageKey) === "true";
+  });
+
   useEffect(() => {
     document.title = `${wedding.couple.displayNames} Wedding`;
   }, [wedding.couple.displayNames]);
 
+  const completeInvitation = useCallback(() => {
+    if (rememberForSession) {
+      window.sessionStorage.setItem(invitationStorageKey, "true");
+    }
+    setIsInvitationOpen(true);
+  }, [invitationStorageKey, rememberForSession]);
+
   return (
     <div className={`wedding-app theme-${wedding.theme.name}`} style={getThemeStyle(wedding.theme.name, wedding.theme.overrides)}>
+      {!isInvitationOpen && <InvitationGate wedding={wedding} onComplete={completeInvitation} />}
       <Header wedding={wedding} />
       <main>
         <Hero wedding={wedding} />

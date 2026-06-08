@@ -58,6 +58,21 @@ theme: {
 
 Theme definitions live in `src/themes.ts`.
 
+## Entry invitation
+
+The optional `entryInvitation` config controls the animated envelope shown before the website:
+
+```ts
+entryInvitation: {
+  enabled: true,
+  eyebrow: "You are invited",
+  message: "Together with their families, invite you to celebrate their wedding.",
+  openLabel: "Open invitation",
+  backgroundImage: "/weddings/couple-slug/invitation.png",
+  rememberForSession: true,
+}
+```
+
 ## RSVP
 
 For free RSVP collection, use Google Forms. Add the public link and optional embed link to the wedding config:

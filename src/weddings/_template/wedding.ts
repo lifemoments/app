@@ -20,6 +20,13 @@ export const templateWedding: WeddingConfig = {
     greeting: "With full hearts, we invite you",
     message: "Join us for the wedding celebrations.",
   },
+  entryInvitation: {
+    enabled: true,
+    eyebrow: "You are invited",
+    message: "Together with their families, invite you to celebrate their wedding.",
+    openLabel: "Open invitation",
+    rememberForSession: true,
+  },
   events: [
     {
       id: "wedding",

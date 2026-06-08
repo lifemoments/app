@@ -84,6 +84,14 @@ export type WeddingConfig = {
     greeting: string;
     message: string;
   };
+  entryInvitation?: {
+    enabled: boolean;
+    eyebrow?: string;
+    message?: string;
+    openLabel?: string;
+    backgroundImage?: string;
+    rememberForSession?: boolean;
+  };
   events: WeddingEvent[];
   gallery: MediaItem[];
   livestream?: {

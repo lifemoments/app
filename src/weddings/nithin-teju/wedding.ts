@@ -22,6 +22,14 @@ export const nithinTejuWedding: WeddingConfig = {
     message:
       "Join us for ceremonies, music, food, dancing, blessings, and the people who make this new beginning feel like home.",
   },
+  entryInvitation: {
+    enabled: true,
+    eyebrow: "A celebration awaits",
+    message: "Together with their families, invite you to celebrate their wedding.",
+    openLabel: "Open invitation",
+    backgroundImage: "/weddings/nithin-teju/gallery/save-the-date-film.png",
+    rememberForSession: false,
+  },
   events: [
     {
       id: "haldi",
