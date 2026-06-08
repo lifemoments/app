@@ -954,8 +954,8 @@ body.invitation-locked {
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top;
   transition:
-    transform 720ms cubic-bezier(0.34, 0.03, 0.2, 1),
-    z-index 0ms linear 360ms;
+    transform 1.44s cubic-bezier(0.34, 0.03, 0.2, 1),
+    z-index 0ms linear 720ms;
 }
 
 .envelope-seal {
