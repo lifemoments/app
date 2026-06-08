@@ -56,7 +56,7 @@ export const nithinTejuWedding: WeddingConfig = {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",
         city: "Cumming, GA",
-        mapQuery: "Address here",
+        mapQuery: "Reflections Event Space, 215 Advantage Drive Suite 100, Cumming, GA 30040",
       },
     },
     {
@@ -74,7 +74,7 @@ export const nithinTejuWedding: WeddingConfig = {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",
         city: "Cumming, GA",
-        mapQuery: "Address here",
+        mapQuery: "Reflections Event Space, 215 Advantage Drive Suite 100, Cumming, GA 30040",
       },
     },
   ],

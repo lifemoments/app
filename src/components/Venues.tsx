@@ -12,11 +12,18 @@ type VenueGroup = Venue & {
 const getGoogleEmbedUrl = (query: string) =>
   `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
 
+const getVenueMapQuery = (venue: Venue) => {
+  const configuredQuery = venue.mapQuery?.trim();
+  const isPlaceholder = !configuredQuery || configuredQuery.toLowerCase() === "address here";
+
+  return isPlaceholder ? [venue.name, venue.address, venue.city].filter(Boolean).join(", ") : configuredQuery;
+};
+
 const getGoogleMapsUrl = (venue: Venue) =>
-  venue.googleMapsUrl ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue.mapQuery)}`;
+  venue.googleMapsUrl ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(getVenueMapQuery(venue))}`;
 
 const getAppleMapsUrl = (venue: Venue) =>
-  venue.appleMapsUrl ?? `https://maps.apple.com/?q=${encodeURIComponent(venue.mapQuery)}`;
+  venue.appleMapsUrl ?? `https://maps.apple.com/?q=${encodeURIComponent(getVenueMapQuery(venue))}`;
 
 export function Venues({ events }: VenuesProps) {
   const venues = events.reduce<VenueGroup[]>((groups, event) => {
@@ -40,7 +47,7 @@ export function Venues({ events }: VenuesProps) {
         {venues.map((venue) => (
           <article className="venue-card" key={`${venue.name}-${venue.address}`}>
             <div className="map-frame">
-              <iframe src={getGoogleEmbedUrl(venue.mapQuery)} title={`${venue.name} map`} loading="lazy" />
+              <iframe src={getGoogleEmbedUrl(getVenueMapQuery(venue))} title={`${venue.name} map`} loading="lazy" />
             </div>
             <div className="venue-body">
               <p className="event-type">
