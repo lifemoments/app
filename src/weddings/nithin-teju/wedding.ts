@@ -10,7 +10,8 @@ export const nithinTejuWedding: WeddingConfig = {
     story:
       "From a coffee that became a tradition to a promise surrounded by the people they love, this celebration is built around warmth, color, music, and every tiny moment in between.",
   },
-  weddingDate: "2026-08-29T09:30:00-07:00",
+  weddingDate: "2026-08-29T09:30:00-04:00",
+  timeZone: "America/New_York",
   heroImage:
     "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=85",
   theme: {
@@ -40,8 +41,7 @@ export const nithinTejuWedding: WeddingConfig = {
       endTime: "20:00",
       dressCode: "Biege, yellow, or florals",
       note: "Expect turmeric, games, laughter, and sunlight.",
-      image:
-        "https://images.unsplash.com/photo-1609151162377-794faf68b02f?auto=format&fit=crop&w=1200&q=80",
+      image: "/weddings/nithin-teju/gallery/inthe_haldi.jpeg",
       venue: {
         name: "Address here",
         address: "Address here",
@@ -58,8 +58,7 @@ export const nithinTejuWedding: WeddingConfig = {
       endTime: "22:00",
       dressCode: "Colorful traditional attire, mehendi-friendly",
       note: "Henna, music, dancing, and celebration.",
-      image:
-        "https://images.unsplash.com/photo-1619734089700-842e56497353?auto=format&fit=crop&w=1200&q=80",
+      image: "/weddings/nithin-teju/gallery/inthe_mehendi.jpeg",
       venue: {
         name: "Address here",
         address: "Address here",
@@ -127,7 +126,7 @@ export const nithinTejuWedding: WeddingConfig = {
   livestream: {
     title: "Wedding Ceremony Live",
     youtubeVideoId: "jfKfPfyJRdk",
-    startsAt: "2026-08-29T09:30:00-07:00",
+    startsAt: "2026-08-29T09:30:00-04:00",
   },
   rsvp: {
     deadline: "2026-08-15",

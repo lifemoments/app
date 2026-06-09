@@ -74,6 +74,7 @@ export type WeddingConfig = {
     story: string;
   };
   weddingDate: string;
+  timeZone: string;
   heroImage: string;
   theme: WeddingThemeConfig;
   /**

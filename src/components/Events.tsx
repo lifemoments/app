@@ -1,13 +1,14 @@
 import { CalendarDays, Clock, MapPin, Shirt } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { WeddingEvent } from "../types";
-import { formatDate, formatTime, sortByDateTime } from "../lib/date";
+import { formatDate, formatTime, getTimeZoneAbbreviation, sortByDateTime } from "../lib/date";
 
 type EventsProps = {
   events: WeddingEvent[];
+  timeZone: string;
 };
 
-export function Events({ events }: EventsProps) {
+export function Events({ events, timeZone }: EventsProps) {
   const [activeType, setActiveType] = useState("All");
   const eventTypes = useMemo(() => ["All", ...Array.from(new Set(events.map((event) => event.type)))], [events]);
   const visibleEvents = sortByDateTime(
@@ -51,6 +52,7 @@ export function Events({ events }: EventsProps) {
                   <span>
                     {formatTime(event.date, event.startTime)}
                     {event.endTime ? ` - ${formatTime(event.date, event.endTime)}` : ""}
+                    {` ${getTimeZoneAbbreviation(event.date, timeZone)}`}
                   </span>
                 </li>
                 <li>

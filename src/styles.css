@@ -247,6 +247,121 @@ h3 {
   text-transform: uppercase;
 }
 
+.scratch-reveal {
+  position: relative;
+  width: min(600px, 100%);
+  min-height: 220px;
+  margin-top: 28px;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(24, 16, 18, 0.34);
+  box-shadow: 0 18px 42px rgba(18, 10, 12, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.scratch-content {
+  display: grid;
+  min-height: 220px;
+  align-content: center;
+  gap: 20px;
+  padding: 22px;
+  opacity: 0.58;
+  transform: scale(0.98);
+  transition:
+    opacity 420ms ease,
+    transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.scratch-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.scratch-reveal .countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 0;
+}
+
+.scratch-reveal .countdown div {
+  width: auto;
+  min-height: 82px;
+}
+
+.scratch-canvas {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.scratch-canvas:focus-visible {
+  outline: 3px solid var(--dark-accent);
+  outline-offset: 4px;
+}
+
+.scratch-revealed .scratch-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scratch-celebration {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.scratch-celebration i {
+  --angle: calc(var(--particle) * 20deg);
+  position: absolute;
+  width: 8px;
+  height: 13px;
+  border-radius: 2px;
+  background: var(--dark-accent);
+  animation: scratch-confetti 1.45s ease-out forwards;
+  transform: rotate(var(--angle));
+}
+
+.scratch-celebration i:nth-child(3n + 1) {
+  background: #ffd166;
+}
+
+.scratch-celebration i:nth-child(3n + 2) {
+  background: #ffffff;
+}
+
+@keyframes scratch-confetti {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateY(0) rotate(0deg);
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateY(-150px) rotate(480deg);
+  }
+}
+
 .scroll-cue {
   position: absolute;
   right: max(24px, calc((100vw - 1120px) / 2));
@@ -964,19 +1079,26 @@ body.invitation-locked {
   top: 44%;
   left: 50%;
   display: grid;
-  width: 48px;
+  width: 52px;
   height: 48px;
   transform: translate(-50%, -50%);
   place-items: center;
-  border-radius: 50%;
   background: var(--accent);
   box-shadow:
     0 5px 14px rgba(54, 42, 38, 0.24),
     inset 0 0 0 4px rgba(255, 255, 255, 0.16);
+  clip-path: path("M26 47 C21 42 3 30 3 16 C3 7 9 2 17 2 C22 2 25 5 26 9 C28 5 31 2 36 2 C44 2 49 7 49 16 C49 30 31 42 26 47 Z");
   color: white;
   transition:
     opacity 220ms ease,
     transform 280ms ease;
+}
+
+.envelope-seal strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.92rem;
+  line-height: 1;
+  transform: translateY(-2px);
 }
 
 .envelope-action {
@@ -1127,8 +1249,9 @@ body.invitation-locked {
   }
 
   .hero {
-    min-height: 88svh;
-    padding: 112px 20px 58px;
+    min-height: 100svh;
+    padding: 104px 20px 42px;
+    align-items: end;
   }
 
   .hero-overlay {
@@ -1179,6 +1302,38 @@ body.invitation-locked {
 
   .countdown strong {
     font-size: 1.7rem;
+  }
+
+  .scratch-reveal {
+    width: 100%;
+    min-height: 238px;
+    margin-top: 22px;
+  }
+
+  .scratch-content {
+    min-height: 238px;
+    gap: 16px;
+    padding: 18px 14px;
+  }
+
+  .scratch-reveal .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scratch-reveal .countdown div {
+    min-height: 68px;
+  }
+
+  .scratch-reveal .countdown strong {
+    font-size: 1.55rem;
+  }
+
+  .scratch-reveal .countdown span {
+    font-size: 0.7rem;
+  }
+
+  .scratch-canvas {
+    cursor: default;
   }
 
   .section {
@@ -1392,7 +1547,9 @@ body.invitation-locked {
   }
 
   .hero {
+    min-height: 100svh;
     padding-right: 18px;
+    padding-bottom: 34px;
     padding-left: 18px;
   }
 
@@ -1403,6 +1560,18 @@ body.invitation-locked {
 
   .countdown div {
     width: auto;
+  }
+
+  .scratch-date {
+    font-size: 0.95rem;
+  }
+
+  .scratch-reveal {
+    min-height: 228px;
+  }
+
+  .scratch-content {
+    min-height: 228px;
   }
 
   .event-body,
@@ -1427,12 +1596,36 @@ body.invitation-locked {
   }
 
   .hero {
+    padding-top: 96px;
     padding-right: 16px;
     padding-left: 16px;
   }
 
   h1 {
     font-size: clamp(2.8rem, 14vw, 3.7rem);
+  }
+
+  .hero-tagline {
+    margin-top: 14px;
+    font-size: 0.98rem;
+  }
+
+  .scratch-reveal {
+    min-height: 218px;
+    margin-top: 16px;
+  }
+
+  .scratch-content {
+    min-height: 218px;
+    padding: 14px 10px;
+  }
+
+  .scratch-reveal .countdown {
+    gap: 6px;
+  }
+
+  .scratch-reveal .countdown div {
+    min-height: 62px;
   }
 
   .attendance {

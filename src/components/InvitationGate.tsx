@@ -1,4 +1,3 @@
-import { Heart } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import type { WeddingConfig } from "../types";
@@ -49,7 +48,7 @@ export function InvitationGate({ wedding, onComplete }: InvitationGateProps) {
           <span className="envelope-letter-pocket" />
           <span className="envelope-flap" />
           <span className="envelope-seal">
-            <Heart size={18} fill="currentColor" />
+            <strong>NT</strong>
           </span>
         </span>
       </button>

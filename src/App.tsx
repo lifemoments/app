@@ -71,10 +71,10 @@ function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
       <main>
         <Hero wedding={wedding} />
         <Story wedding={wedding} />
-        <Events events={wedding.events} />
+        <Events events={wedding.events} timeZone={wedding.timeZone} />
         <Rsvp wedding={wedding} />
         <Gallery items={wedding.gallery} />
-        {wedding.livestream && <LiveStream livestream={wedding.livestream} />}
+        {wedding.livestream && <LiveStream livestream={wedding.livestream} timeZone={wedding.timeZone} />}
         <Venues events={wedding.events} />
       </main>
       <Footer wedding={wedding} />

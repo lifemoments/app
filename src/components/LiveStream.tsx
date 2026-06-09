@@ -4,9 +4,10 @@ import { formatDate } from "../lib/date";
 
 type LiveStreamProps = {
   livestream: NonNullable<WeddingConfig["livestream"]>;
+  timeZone: string;
 };
 
-export function LiveStream({ livestream }: LiveStreamProps) {
+export function LiveStream({ livestream, timeZone }: LiveStreamProps) {
   const embedUrl = `https://www.youtube.com/embed/${livestream.youtubeVideoId}`;
   const watchUrl = `https://www.youtube.com/watch?v=${livestream.youtubeVideoId}`;
 
@@ -28,7 +29,7 @@ export function LiveStream({ livestream }: LiveStreamProps) {
         <div className="live-details">
           <p>
             <CalendarClock size={19} />
-            Starts {formatDate(livestream.startsAt, { weekday: "long", hour: "numeric", minute: "2-digit" })}
+            Starts {formatDate(livestream.startsAt, { weekday: "long", hour: "numeric", minute: "2-digit", timeZoneName: "short" }, timeZone)}
           </p>
           <a href={watchUrl} target="_blank" rel="noreferrer" className="primary-button">
             <PlayCircle size={18} />

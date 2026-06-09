@@ -35,6 +35,7 @@ Update these fields for each marriage:
 
 - `couple`: names, tagline, and story.
 - `weddingDate`: the main date used by the countdown.
+- `timeZone`: IANA timezone for all wedding times, such as `America/New_York`.
 - `heroImage`: first-screen background image.
 - `theme`: visual preset and optional color overrides.
 - `entryInvitation`: optional animated envelope shown before the website.

@@ -1,8 +1,8 @@
-import { CalendarHeart, MapPin } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import type { WeddingConfig } from "../types";
-import { formatDate, getCountdown } from "../lib/date";
+import { getCountdown } from "../lib/date";
+import { ScratchReveal } from "./ScratchReveal";
 
 type HeroProps = {
   wedding: WeddingConfig;
@@ -15,8 +15,6 @@ export function Hero({ wedding }: HeroProps) {
     const timer = window.setInterval(() => setCountdown(getCountdown(wedding.weddingDate)), 1_000);
     return () => window.clearInterval(timer);
   }, [wedding.weddingDate]);
-
-  const primaryVenue = wedding.events.find((event) => event.date === wedding.weddingDate.slice(0, 10))?.venue;
 
   return (
     <section
@@ -33,26 +31,7 @@ export function Hero({ wedding }: HeroProps) {
         <p className="eyebrow">{wedding.invitation.greeting}</p>
         <h1>{wedding.couple.displayNames}</h1>
         <p className="hero-tagline">{wedding.couple.tagline}</p>
-        <div className="hero-meta" aria-label="Wedding summary">
-          <span>
-            <CalendarHeart size={18} />
-            {formatDate(wedding.weddingDate, { weekday: "long" })}
-          </span>
-          {primaryVenue && (
-            <span>
-              <MapPin size={18} />
-              {primaryVenue.city}
-            </span>
-          )}
-        </div>
-        <div className="countdown" aria-label="Countdown to wedding">
-          {Object.entries(countdown).map(([label, value]) => (
-            <div key={label}>
-              <strong>{String(value).padStart(2, "0")}</strong>
-              <span>{label}</span>
-            </div>
-          ))}
-        </div>
+        <ScratchReveal weddingDate={wedding.weddingDate} countdown={countdown} timeZone={wedding.timeZone} />
       </div>
       <a className="scroll-cue" href="#story">
         View invitation

@@ -1,17 +1,37 @@
-export const formatDate = (dateValue: string, options?: Intl.DateTimeFormatOptions) =>
-  new Intl.DateTimeFormat("en-US", {
+const isDateOnly = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value);
+
+export const formatDate = (
+  dateValue: string,
+  options?: Intl.DateTimeFormatOptions,
+  timeZone?: string,
+) => {
+  const date = isDateOnly(dateValue) ? new Date(`${dateValue}T12:00:00Z`) : new Date(dateValue);
+
+  return new Intl.DateTimeFormat("en-US", {
     weekday: "short",
     month: "short",
     day: "numeric",
     year: "numeric",
+    timeZone: isDateOnly(dateValue) ? "UTC" : timeZone,
     ...options,
-  }).format(new Date(dateValue));
+  }).format(date);
+};
 
 export const formatTime = (date: string, time: string) =>
   new Intl.DateTimeFormat("en-US", {
     hour: "numeric",
     minute: "2-digit",
-  }).format(new Date(`${date}T${time}:00`));
+    timeZone: "UTC",
+  }).format(new Date(`${date}T${time}:00Z`));
+
+export const getTimeZoneAbbreviation = (date: string, timeZone: string) => {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    timeZoneName: "short",
+  }).formatToParts(new Date(`${date}T12:00:00Z`));
+
+  return parts.find((part) => part.type === "timeZoneName")?.value ?? timeZone;
+};
 
 export const getCountdown = (targetDate: string) => {
   const now = Date.now();
@@ -27,8 +47,4 @@ export const getCountdown = (targetDate: string) => {
 };
 
 export const sortByDateTime = <T extends { date: string; startTime: string }>(items: T[]) =>
-  [...items].sort(
-    (a, b) =>
-      new Date(`${a.date}T${a.startTime}:00`).getTime() -
-      new Date(`${b.date}T${b.startTime}:00`).getTime(),
-  );
+  [...items].sort((a, b) => `${a.date}T${a.startTime}`.localeCompare(`${b.date}T${b.startTime}`));

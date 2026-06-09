@@ -9,7 +9,8 @@ export const templateWedding: WeddingConfig = {
     tagline: "A celebration of love, family, and new beginnings.",
     story: "Add the couple's story here.",
   },
-  weddingDate: "2026-08-29T09:30:00-07:00",
+  weddingDate: "2026-08-29T09:30:00-04:00",
+  timeZone: "America/New_York",
   heroImage:
     "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=85",
   theme: {
