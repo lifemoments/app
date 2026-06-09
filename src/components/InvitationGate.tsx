@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
+import { formatDate } from "../lib/date";
 import type { WeddingConfig } from "../types";
 
 type InvitationGateProps = {
@@ -8,7 +9,7 @@ type InvitationGateProps = {
   onComplete: () => void;
 };
 
-type GatePhase = "sealed" | "opening" | "unfolding" | "exiting";
+type GatePhase = "sealed" | "opening" | "unfolding" | "expanding" | "exiting";
 
 export function InvitationGate({ wedding, onReveal, onComplete }: InvitationGateProps) {
   const [phase, setPhase] = useState<GatePhase>("sealed");
@@ -25,12 +26,13 @@ export function InvitationGate({ wedding, onReveal, onComplete }: InvitationGate
     }
 
     setPhase("opening");
-    window.setTimeout(() => setPhase("unfolding"), 1_150);
+    window.setTimeout(() => setPhase("unfolding"), 550);
+    window.setTimeout(() => setPhase("expanding"), 1_100);
     window.setTimeout(() => {
       setPhase("exiting");
       onReveal();
-    }, 2_850);
-    window.setTimeout(onComplete, 3_550);
+    }, 1_850);
+    window.setTimeout(onComplete, 2_350);
   };
 
   return (
@@ -39,6 +41,7 @@ export function InvitationGate({ wedding, onReveal, onComplete }: InvitationGate
       style={
         {
           "--invitation-image": `url(${config?.backgroundImage ?? wedding.heroImage})`,
+          "--invitation-site-image": `url(${wedding.heroImage})`,
         } as CSSProperties
       }
       role="dialog"
@@ -53,7 +56,22 @@ export function InvitationGate({ wedding, onReveal, onComplete }: InvitationGate
           <span className="invitation-card">
             <span className="invitation-card-panel invitation-card-panel-left" />
             <span className="invitation-card-panel invitation-card-panel-right" />
-            <span className="invitation-card-monogram">NT</span>
+            <span className="invitation-card-surface" />
+            <span className="invitation-card-preview">
+              <span className="invitation-card-preview-header">
+                <span>NT</span>
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="invitation-card-preview-content">
+                <small>{wedding.invitation.greeting}</small>
+                <strong>{wedding.couple.displayNames}</strong>
+                <time dateTime={wedding.weddingDate}>
+                  {formatDate(wedding.weddingDate, { weekday: "long" }, wedding.timeZone)}
+                </time>
+              </span>
+            </span>
           </span>
           <span className="envelope-letter-pocket" />
           <span className="envelope-flap" />

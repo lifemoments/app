@@ -643,11 +643,67 @@ h3 {
 
 .rsvp-form {
   display: grid;
-  gap: 22px;
+  gap: 0;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 8px;
-  padding: clamp(20px, 4vw, 34px);
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.16);
+}
+
+.rsvp-form-main {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rsvp-form-section {
+  display: grid;
+  align-content: start;
+  gap: 26px;
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.guest-details {
+  align-content: center;
+}
+
+.attendance-details {
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.form-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form-section-heading h3,
+.form-section-heading p {
+  margin: 0;
+}
+
+.form-section-heading h3 {
+  color: var(--paper);
+  font-size: 1.2rem;
+}
+
+.form-section-heading p {
+  margin-top: 3px;
+  color: rgba(255, 250, 245, 0.62);
+  font-size: 0.88rem;
+}
+
+.form-section-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--dark-accent);
 }
 
 .google-rsvp {
@@ -688,7 +744,7 @@ h3 {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px 16px;
 }
 
 label,
@@ -698,19 +754,20 @@ fieldset {
 
 .rsvp-form label {
   display: grid;
-  gap: 9px;
+  gap: 8px;
   color: rgba(255, 250, 245, 0.83);
-  font-weight: 800;
+  font-size: 0.88rem;
+  font-weight: 750;
 }
 
 input,
 textarea {
-  min-height: 48px;
+  min-height: 50px;
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 13px 14px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.09);
   color: #fff;
   outline: none;
 }
@@ -723,6 +780,7 @@ textarea {
 input:focus,
 textarea:focus {
   border-color: var(--dark-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dark-accent) 18%, transparent);
 }
 
 .stepper {
@@ -731,6 +789,7 @@ textarea:focus {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
+  background: rgba(255, 255, 255, 0.09);
 }
 
 .stepper button,
@@ -770,27 +829,68 @@ legend {
   font-weight: 900;
 }
 
+.attendance-details fieldset {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.attendance-details .event-picker {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .attendance label,
 .event-picker label {
-  display: inline-flex;
+  position: relative;
+  display: flex;
   align-items: center;
   gap: 9px;
-  min-height: 44px;
-  padding: 0 13px;
+  min-height: 48px;
+  border-color: rgba(255, 255, 255, 0.14);
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.07);
   color: #fffaf5;
+  font-size: 0.86rem;
+  line-height: 1.3;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
 }
 
 .attendance input,
 .event-picker input {
-  width: auto;
+  width: 17px;
+  min-width: 17px;
+  min-height: 17px;
+  margin: 0;
   accent-color: var(--accent);
+}
+
+.attendance label:has(input:checked),
+.event-picker label:has(input:checked) {
+  border-color: color-mix(in srgb, var(--dark-accent) 72%, transparent);
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
 }
 
 .form-actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 20px clamp(24px, 4vw, 40px);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.form-submit-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-feedback {
+  min-width: 0;
 }
 
 .primary-button {
@@ -820,6 +920,7 @@ legend {
   margin: 0;
   color: var(--dark-accent);
   font-weight: 800;
+  text-align: right;
 }
 
 .media-grid {
@@ -1042,10 +1143,8 @@ body.invitation-locked {
   color: var(--ink);
   isolation: isolate;
   transition:
-    opacity 620ms ease,
-    visibility 620ms ease,
-    filter 620ms ease,
-    transform 620ms cubic-bezier(0.2, 0.78, 0.2, 1);
+    opacity 500ms ease,
+    visibility 500ms ease;
 }
 
 .invitation-backdrop {
@@ -1056,6 +1155,7 @@ body.invitation-locked {
     linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
     var(--invitation-image) center / cover;
   transition:
+    opacity 1s ease,
     filter 700ms ease,
     transform 800ms cubic-bezier(0.2, 0.78, 0.2, 1);
 }
@@ -1115,6 +1215,7 @@ body.invitation-locked {
 }
 
 .envelope-scene {
+  z-index: 2;
   position: relative;
   display: block;
   width: min(390px, 86vw);
@@ -1140,6 +1241,7 @@ body.invitation-locked {
   z-index: 1;
   border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
   background: color-mix(in srgb, var(--paper) 82%, var(--accent));
+  transition: opacity 480ms ease;
 }
 
 .invitation-card {
@@ -1155,10 +1257,11 @@ body.invitation-locked {
   opacity: 0;
   perspective: 1200px;
   transform: translateY(32%) scale(0.94);
-  transform-origin: center bottom;
+  transform-origin: 100% 50%;
   transition:
-    opacity 500ms ease,
-    transform 1.05s cubic-bezier(0.18, 0.78, 0.2, 1);
+    opacity 320ms ease,
+    transform 620ms cubic-bezier(0.18, 0.78, 0.2, 1);
+  will-change: opacity, transform;
 }
 
 .invitation-card-panel {
@@ -1167,47 +1270,115 @@ body.invitation-locked {
   bottom: 0;
   left: 0;
   width: 100%;
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border: 0;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.34), transparent 42%),
-    var(--paper);
+    linear-gradient(rgba(27, 18, 20, 0.3), rgba(27, 18, 20, 0.48)),
+    var(--invitation-site-image) center / 200% 100% no-repeat;
   box-shadow: 0 12px 28px rgba(54, 42, 38, 0.14);
   backface-visibility: hidden;
-  transition: transform 900ms cubic-bezier(0.2, 0.76, 0.2, 1) 280ms;
+  transition:
+    border-radius 520ms ease,
+    opacity 240ms ease,
+    transform 520ms cubic-bezier(0.2, 0.76, 0.2, 1) 80ms;
 }
 
 .invitation-card-panel-left {
   border-radius: 6px 0 0 6px;
+  background-position: left center;
 }
 
 .invitation-card-panel-right {
   left: 100%;
   border-radius: 0 6px 6px 0;
+  background-position: right center;
   transform: rotateY(-179deg);
   transform-origin: left center;
 }
 
-.invitation-card-monogram {
+.invitation-card-surface {
   position: absolute;
   z-index: 2;
-  top: 50%;
-  left: 100%;
-  display: grid;
-  width: 54px;
-  height: 54px;
-  transform: translate(-50%, -50%) scale(0.72);
-  place-items: center;
-  border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
-  border-radius: 50%;
-  background: var(--paper);
-  color: var(--accent);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1rem;
-  font-weight: 800;
+  inset: 0 auto 0 0;
+  width: 200%;
+  border-radius: 6px;
+  background:
+    linear-gradient(rgba(27, 18, 20, 0.3), rgba(27, 18, 20, 0.48)),
+    var(--invitation-site-image) center / cover no-repeat;
+  box-shadow: 0 12px 28px rgba(54, 42, 38, 0.14);
   opacity: 0;
   transition:
-    opacity 360ms ease 760ms,
-    transform 480ms cubic-bezier(0.2, 0.8, 0.2, 1) 720ms;
+    border-radius 520ms ease,
+    box-shadow 520ms ease,
+    opacity 180ms ease;
+}
+
+.invitation-card-preview {
+  position: absolute;
+  z-index: 4;
+  inset: 0 auto 0 0;
+  display: grid;
+  width: 200%;
+  padding: 10px;
+  color: white;
+  opacity: 0;
+  transition:
+    opacity 320ms ease 400ms,
+    transform 540ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.invitation-card-preview-header {
+  display: flex;
+  height: 22px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 3px;
+  padding: 0 7px;
+  background: rgba(255, 250, 245, 0.78);
+  color: var(--accent);
+  font-size: 0.45rem;
+  font-weight: 900;
+  backdrop-filter: blur(5px);
+}
+
+.invitation-card-preview-header span {
+  margin-right: auto;
+}
+
+.invitation-card-preview-header i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.62;
+}
+
+.invitation-card-preview-content {
+  display: grid;
+  place-self: center;
+  justify-items: center;
+  gap: 4px;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(20, 12, 14, 0.45);
+}
+
+.invitation-card-preview-content small {
+  font-size: 0.42rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.invitation-card-preview-content strong {
+  max-width: 90%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.invitation-card-preview-content time {
+  font-size: 0.46rem;
+  font-weight: 800;
 }
 
 .envelope-letter-pocket {
@@ -1218,6 +1389,7 @@ body.invitation-locked {
     linear-gradient(-32deg, transparent 49.5%, color-mix(in srgb, var(--paper) 76%, var(--accent)) 50%) right / 50.5% 100%
       no-repeat,
     linear-gradient(148deg, transparent 49.5%, color-mix(in srgb, var(--paper) 88%, var(--accent)) 50%);
+  transition: opacity 480ms ease;
 }
 
 .envelope-flap {
@@ -1228,6 +1400,7 @@ body.invitation-locked {
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top;
   transition:
+    opacity 480ms ease,
     transform 1.44s cubic-bezier(0.34, 0.03, 0.2, 1),
     z-index 0ms linear 720ms;
 }
@@ -1285,6 +1458,7 @@ body.invitation-locked {
 
 .invitation-opening .envelope-flap,
 .invitation-unfolding .envelope-flap,
+.invitation-expanding .envelope-flap,
 .invitation-exiting .envelope-flap {
   z-index: 1;
   transform: rotateX(180deg);
@@ -1292,12 +1466,14 @@ body.invitation-locked {
 
 .invitation-opening .envelope-seal,
 .invitation-unfolding .envelope-seal,
+.invitation-expanding .envelope-seal,
 .invitation-exiting .envelope-seal {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.7);
 }
 
 .invitation-unfolding .invitation-card,
+.invitation-expanding .invitation-card,
 .invitation-exiting .invitation-card {
   z-index: 6;
   opacity: 1;
@@ -1305,41 +1481,82 @@ body.invitation-locked {
 }
 
 .invitation-unfolding .invitation-card-panel-right,
+.invitation-expanding .invitation-card-panel-right,
 .invitation-exiting .invitation-card-panel-right {
   transform: rotateY(0);
 }
 
-.invitation-unfolding .invitation-card-monogram,
-.invitation-exiting .invitation-card-monogram {
+.invitation-unfolding .invitation-card-preview {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+}
+
+.invitation-unfolding .invitation-card-surface,
+.invitation-expanding .invitation-card-surface,
+.invitation-exiting .invitation-card-surface {
+  opacity: 1;
+  transition-delay: 420ms;
 }
 
 .invitation-unfolding .envelope-scene {
   transform: translateY(46px);
 }
 
+.invitation-expanding,
 .invitation-exiting {
-  opacity: 0;
-  transform: scale(1.045);
-  filter: blur(8px);
   pointer-events: none;
-  visibility: hidden;
 }
 
+.invitation-expanding .invitation-backdrop,
 .invitation-exiting .invitation-backdrop {
-  filter: blur(10px);
-  transform: scale(1.08);
+  opacity: 0;
 }
 
+.invitation-expanding .envelope-back,
+.invitation-expanding .envelope-letter-pocket,
+.invitation-expanding .envelope-flap,
+.invitation-exiting .envelope-back,
+.invitation-exiting .envelope-letter-pocket,
+.invitation-exiting .envelope-flap {
+  opacity: 0;
+}
+
+.invitation-expanding .envelope-scene,
 .invitation-exiting .envelope-scene {
-  filter: drop-shadow(0 10px 18px rgba(54, 42, 38, 0.08));
+  filter: none;
   transform: translateY(46px);
 }
 
+.invitation-expanding .invitation-card,
 .invitation-exiting .invitation-card {
+  opacity: 1;
+  transform: translateY(-62%) scale(8);
+}
+
+.invitation-expanding .invitation-card-panel,
+.invitation-exiting .invitation-card-panel {
+  border-radius: 0;
+  box-shadow: none;
   opacity: 0;
-  transform: translateY(-62%) scale(2.35);
+  transition-delay: 0ms;
+}
+
+.invitation-expanding .invitation-card-surface,
+.invitation-exiting .invitation-card-surface {
+  border-radius: 0;
+  box-shadow: none;
+  transition-delay: 0ms;
+}
+
+.invitation-expanding .invitation-card-preview,
+.invitation-exiting .invitation-card-preview {
+  opacity: 0;
+  transform: scale(1.08);
+  transition-delay: 0ms;
+}
+
+.invitation-exiting {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media (max-width: 840px) {
@@ -1372,6 +1589,15 @@ body.invitation-locked {
   .live-layout,
   .venue-grid {
     grid-template-columns: 1fr;
+  }
+
+  .rsvp-form-main {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 0;
   }
 
   .story p:last-child {
@@ -1611,8 +1837,26 @@ body.invitation-locked {
   }
 
   .rsvp-form {
-    gap: 18px;
-    padding: 18px;
+    gap: 0;
+    margin-right: -2px;
+    margin-left: -2px;
+  }
+
+  .rsvp-form-section {
+    gap: 22px;
+    padding: 22px 18px;
+  }
+
+  .form-section-heading {
+    align-items: flex-start;
+  }
+
+  .form-grid {
+    gap: 16px;
+  }
+
+  .rsvp-form input {
+    font-size: 1rem;
   }
 
   .google-rsvp-copy {
@@ -1623,13 +1867,12 @@ body.invitation-locked {
     height: 680px;
   }
 
-  fieldset {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
   .attendance {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .attendance-details .event-picker {
+    grid-template-columns: 1fr;
   }
 
   .attendance legend,
@@ -1639,9 +1882,9 @@ body.invitation-locked {
 
   .attendance label,
   .event-picker label {
-    min-height: 46px;
+    min-height: 50px;
     justify-content: center;
-    padding: 0 10px;
+    padding: 0 9px;
     text-align: center;
   }
 
@@ -1652,19 +1895,64 @@ body.invitation-locked {
 
   .form-actions {
     display: grid;
-    grid-template-columns: 1fr 48px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .form-submit-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 50px;
+  }
+
+  .form-submit-actions .primary-button,
+  .form-submit-actions .secondary-link {
+    min-height: 50px;
   }
 
   .form-status {
-    grid-column: 1 / -1;
     align-items: flex-start;
     font-size: 0.92rem;
     line-height: 1.45;
+    text-align: left;
   }
 
-  .media-tile,
-  .media-tile img {
-    min-height: 220px;
+  .gallery-section {
+    overflow: hidden;
+  }
+
+  .gallery-section .media-grid {
+    display: flex;
+    gap: 12px;
+    margin-right: -18px;
+    margin-left: -18px;
+    overflow-x: auto;
+    padding: 0 18px 12px;
+    scroll-padding-inline: 18px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery-section .media-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-section .media-tile {
+    width: min(82vw, 360px);
+    min-width: min(82vw, 360px);
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .gallery-section .media-tile img {
+    min-height: 0;
+    object-fit: contain;
+    background: color-mix(in srgb, var(--paper) 90%, var(--accent));
   }
 
   .media-tile span {
@@ -1729,14 +2017,15 @@ body.invitation-locked {
     width: 42%;
   }
 
-  .invitation-unfolding .invitation-card,
-  .invitation-exiting .invitation-card {
+  .invitation-unfolding .invitation-card {
     transform: translateY(-56%) scale(1);
   }
 
+  .invitation-expanding .invitation-card,
   .invitation-exiting .invitation-card {
-    transform: translateY(-56%) scale(2.65);
+    transform: translateY(-56%) scale(7);
   }
+
 }
 
 @media (max-width: 520px) {
@@ -1830,10 +2119,6 @@ body.invitation-locked {
     height: clamp(290px, 118vw, 480px);
   }
 
-  .attendance {
-    grid-template-columns: 1fr;
-  }
-
   .form-actions,
   .venue-actions {
     grid-template-columns: 1fr;
@@ -1862,7 +2147,8 @@ body.invitation-locked {
   .invitation-intro,
   .invitation-card,
   .invitation-card-panel,
-  .invitation-card-monogram,
+  .invitation-card-surface,
+  .invitation-card-preview,
   .envelope-scene,
   .envelope-flap,
   .envelope-seal {
