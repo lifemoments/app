@@ -8,7 +8,7 @@ export const nithinTejuWedding: WeddingConfig = {
     displayNames: "Nithin & Tejaswini",
     tagline: "Two families, one unforgettable weekend.",
     story:
-      "From a coffee that became a tradition to a promise surrounded by the people they love, this celebration is built around warmth, color, music, and every tiny moment in between.",
+      "From meeting in college nearly a decade ago to a love shaped by friendship, laughter, and shared dreams, this celebration is built around warmth, color, music, and every tiny moment in between.",
   },
   weddingDate: "2026-08-29T09:30:00-04:00",
   timeZone: "America/New_York",
