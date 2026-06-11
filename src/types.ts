@@ -14,8 +14,14 @@ export type WeddingEvent = {
   title: string;
   type: string;
   date: string;
-  startTime: string;
+  startTime?: string;
   endTime?: string;
+  /** Optional multiple time ranges (label, start, end) to display for events like Reception */
+  timeRanges?: Array<{
+    label?: string;
+    startTime: string;
+    endTime?: string;
+  }>;
   dressCode?: string;
   note?: string;
   venue: Venue;
