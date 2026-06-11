@@ -6,9 +6,20 @@ export const nithinTejuWedding: WeddingConfig = {
     partnerOne: "Nithin",
     partnerTwo: "Tejaswini",
     displayNames: "Nithin & Tejaswini",
-    tagline: "Two families, one unforgettable weekend.",
+    tagline: "Join us as we celebrate the beginning of forever.",
     story:
-      "From meeting in college nearly a decade ago to a love shaped by friendship, laughter, and shared dreams, this celebration is built around warmth, color, music, and every tiny moment in between.",
+      "From meeting in college nearly a decade ago to growing together through every chapter since, our story has been built on friendship, laughter, and shared dreams. This weekend is a celebration of all of it.",
+    heroTitle: "#IntheLife",
+    portmanteau: {
+      text: "nithIN + THEjaswini",
+      segments: [
+        { text: "nith", isPrimary: true },
+        { text: "IN", isPrimary: false },
+        { text: " + ", isPrimary: true },
+        { text: "THE", isPrimary: false },
+        { text: "jaswini", isPrimary: true },
+      ],
+    },
   },
   weddingDate: "2026-08-29T09:30:00-04:00",
   timeZone: "America/New_York",
@@ -19,9 +30,9 @@ export const nithinTejuWedding: WeddingConfig = {
   },
   accent: "#b24b5a",
   invitation: {
-    greeting: "With full hearts, we invite you",
+    greeting: "Our next chapter begins.",
     message:
-      "Join us for ceremonies, music, food, dancing, blessings, and the people who make this new beginning feel like home.",
+      "Come celebrate with us through cherished traditions, joyful moments, and unforgettable memories.",
   },
   entryInvitation: {
     enabled: true,
@@ -38,10 +49,9 @@ export const nithinTejuWedding: WeddingConfig = {
       type: "Ceremony",
       date: "2026-08-27",
       startTime: "17:00",
-      endTime: "20:00",
       dressCode: "Biege, Yellow, or Florals",
       note: "Expect turmeric, games, laughter, and sunlight.",
-      image: "/weddings/nithin-teju/gallery/inthe_haldi.jpeg",
+      image: "/weddings/nithin-teju/gallery/haldi%20photo.jpg",
       venue: {
         name: "Address here",
         address: "Address here",
@@ -54,8 +64,7 @@ export const nithinTejuWedding: WeddingConfig = {
       title: "Mehendi",
       type: "Celebration",
       date: "2026-08-28",
-      startTime: "18:00",
-      endTime: "22:00",
+      startTime: "15:00",
       dressCode: "Colorful traditional attire, Mehendi-friendly",
       note: "Henna, music, dancing, and celebration.",
       image: "/weddings/nithin-teju/gallery/inthe_mehendi.jpeg",
@@ -91,6 +100,10 @@ export const nithinTejuWedding: WeddingConfig = {
       date: "2026-08-29",
       startTime: "19:00",
       endTime: "23:30",
+      timeRanges: [
+        { label: "Main Event", startTime: "19:00", endTime: "23:00" },
+        { label: "After Party", startTime: "23:00", endTime: "01:00" },
+      ],
       dressCode: "Men - Blazers / Tuxedos, Women - Sharara Suits",
       note: "Dinner, cocktails, dancing, and a few happy tears.",
       image:

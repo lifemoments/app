@@ -14,8 +14,14 @@ export type WeddingEvent = {
   title: string;
   type: string;
   date: string;
-  startTime: string;
+  startTime?: string;
   endTime?: string;
+  /** Optional multiple time ranges (label, start, end) to display for events like Reception */
+  timeRanges?: Array<{
+    label?: string;
+    startTime: string;
+    endTime?: string;
+  }>;
   dressCode?: string;
   note?: string;
   venue: Venue;
@@ -72,6 +78,14 @@ export type WeddingConfig = {
     displayNames: string;
     tagline: string;
     story: string;
+    heroTitle?: string;
+    portmanteau?: {
+      text: string;
+      segments: Array<{
+        text: string;
+        isPrimary: boolean;
+      }>;
+    };
   };
   weddingDate: string;
   timeZone: string;

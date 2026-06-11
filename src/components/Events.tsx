@@ -51,14 +51,42 @@ export function Events({ events, timeZone }: EventsProps) {
                     <CalendarDays size={18} />
                     <span>{formatDate(event.date)}</span>
                   </li>
-                  <li>
-                    <Clock size={18} />
-                    <span>
-                      {formatTime(event.date, event.startTime)}
-                      {event.endTime ? ` - ${formatTime(event.date, event.endTime)}` : ""}
-                      {` ${getTimeZoneAbbreviation(event.date, timeZone)}`}
-                    </span>
-                  </li>
+                  {event.timeRanges && event.timeRanges.length > 0 ? (
+                    <>
+                      {event.timeRanges.map((range, i) =>
+                        i === 0 ? (
+                          <li key={i}>
+                            <Clock size={18} />
+                            <span>
+                              {range.label ? `${range.label}: ` : ""}
+                              {formatTime(event.date, range.startTime)}
+                              {range.endTime ? ` - ${formatTime(event.date, range.endTime)}` : ""}
+                              {` ${getTimeZoneAbbreviation(event.date, timeZone)}`}
+                            </span>
+                          </li>
+                        ) : (
+                          <li key={i} className="time-continuation">
+                            <span className="time-dash">— </span>
+                            <span>
+                              {range.label ? `${range.label}: ` : ""}
+                              {formatTime(event.date, range.startTime)}
+                              {range.endTime ? ` to ${formatTime(event.date, range.endTime)}` : ""}
+                              {` ${getTimeZoneAbbreviation(event.date, timeZone)}`}
+                            </span>
+                          </li>
+                        ),
+                      )}
+                    </>
+                  ) : (
+                    <li>
+                      <Clock size={18} />
+                      <span>
+                        {event.startTime ? formatTime(event.date, event.startTime) : "TBD"}
+                        {event.endTime ? ` - ${formatTime(event.date, event.endTime)}` : ""}
+                        {` ${getTimeZoneAbbreviation(event.date, timeZone)}`}
+                      </span>
+                    </li>
+                  )}
                   <li>
                     <MapPin size={18} />
                     {googleMapsUrl ? (

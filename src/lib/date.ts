@@ -46,5 +46,7 @@ export const getCountdown = (targetDate: string) => {
   return { days, hours, minutes, seconds };
 };
 
-export const sortByDateTime = <T extends { date: string; startTime: string }>(items: T[]) =>
-  [...items].sort((a, b) => `${a.date}T${a.startTime}`.localeCompare(`${b.date}T${b.startTime}`));
+export const sortByDateTime = <T extends { date: string; startTime?: string }>(items: T[]) =>
+  [...items].sort((a, b) =>
+    `${a.date}T${a.startTime ?? "00:00"}`.localeCompare(`${b.date}T${b.startTime ?? "00:00"}`),
+  );

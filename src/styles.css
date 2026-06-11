@@ -233,6 +233,31 @@ h1 {
   line-height: 0.88;
 }
 
+.hero-portmanteau {
+  display: block;
+  margin-top: 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.55rem, 1.2vw, 0.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.portmanteau-segment {
+  display: inline;
+}
+
+.portmanteau-segment.primary {
+  color: inherit;
+  opacity: 0.95;
+}
+
+.portmanteau-segment.secondary {
+  color: var(--accent);
+  font-weight: 500;
+}
+
 h2 {
   margin: 0;
   max-width: 780px;
@@ -583,6 +608,19 @@ h3 {
   display: flex;
   gap: 10px;
   color: #51484b;
+}
+
+.event-body .time-continuation {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 34px; /* aligns under the time text, keeping clock icon column clear */
+  color: #51484b;
+}
+
+.event-body .time-continuation .time-dash {
+  color: rgba(81, 72, 75, 0.8);
+  font-weight: 700;
 }
 
 .event-location {
