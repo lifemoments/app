@@ -29,7 +29,18 @@ export function Hero({ wedding }: HeroProps) {
       <div className="hero-overlay" />
       <div className="hero-content">
         <p className="eyebrow">{wedding.invitation.greeting}</p>
-        <h1>{wedding.couple.displayNames}</h1>
+        <h1>
+          {wedding.couple.heroTitle || wedding.couple.displayNames}
+          {wedding.couple.portmanteau && (
+            <span className="hero-portmanteau">
+              {wedding.couple.portmanteau.segments.map((segment, index) => (
+                <span key={index} className={`portmanteau-segment ${segment.isPrimary ? "primary" : "secondary"}`}>
+                  {segment.text}
+                </span>
+              ))}
+            </span>
+          )}
+        </h1>
         <p className="hero-tagline">{wedding.couple.tagline}</p>
         <ScratchReveal weddingDate={wedding.weddingDate} countdown={countdown} timeZone={wedding.timeZone} />
       </div>

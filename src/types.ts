@@ -72,6 +72,14 @@ export type WeddingConfig = {
     displayNames: string;
     tagline: string;
     story: string;
+    heroTitle?: string;
+    portmanteau?: {
+      text: string;
+      segments: Array<{
+        text: string;
+        isPrimary: boolean;
+      }>;
+    };
   };
   weddingDate: string;
   timeZone: string;

@@ -6,9 +6,20 @@ export const nithinTejuWedding: WeddingConfig = {
     partnerOne: "Nithin",
     partnerTwo: "Tejaswini",
     displayNames: "Nithin & Tejaswini",
-    tagline: "Two families, one unforgettable weekend.",
+    tagline: "Join us as we celebrate the beginning of forever.",
     story:
       "From meeting in college nearly a decade ago to a love shaped by friendship, laughter, and shared dreams, this celebration is built around warmth, color, music, and every tiny moment in between.",
+    heroTitle: "#IntheLife",
+    portmanteau: {
+      text: "nithIN + THEjaswini",
+      segments: [
+        { text: "nith", isPrimary: true },
+        { text: "IN", isPrimary: false },
+        { text: " + ", isPrimary: true },
+        { text: "THE", isPrimary: false },
+        { text: "jaswini", isPrimary: true },
+      ],
+    },
   },
   weddingDate: "2026-08-29T09:30:00-04:00",
   timeZone: "America/New_York",
@@ -19,9 +30,9 @@ export const nithinTejuWedding: WeddingConfig = {
   },
   accent: "#b24b5a",
   invitation: {
-    greeting: "With full hearts, we invite you",
+    greeting: "Our next chapter begins.",
     message:
-      "Join us for ceremonies, music, food, dancing, blessings, and the people who make this new beginning feel like home.",
+      "Come celebrate with us through cherished traditions, joyful moments, and unforgettable memories.",
   },
   entryInvitation: {
     enabled: true,
