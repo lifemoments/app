@@ -108,6 +108,12 @@ export type WeddingConfig = {
     backgroundImage?: string;
     rememberForSession?: boolean;
   };
+  music?: {
+    src: string;
+    title?: string;
+    loop?: boolean;
+    volume?: number;
+  };
   events: WeddingEvent[];
   gallery: MediaItem[];
   livestream?: {

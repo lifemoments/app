@@ -41,6 +41,12 @@ export const nithinTejuWedding: WeddingConfig = {
     backgroundImage: "/weddings/nithin-teju/gallery/save-the-date-film.png",
     rememberForSession: false,
   },
+  music: {
+    src: "/weddings/nithin-teju/gallery/sample-6s.mp3",
+    title: "Sample wedding music",
+    loop: true,
+    volume: 0.55,
+  },
   events: [
     {
       id: "haldi",
