@@ -42,7 +42,7 @@ export const nithinTejuWedding: WeddingConfig = {
     rememberForSession: false,
   },
   music: {
-    src: "/weddings/nithin-teju/gallery/sample-6s.mp3",
+    src: "/weddings/nithin-teju/gallery/song.mp3",
     title: "Sample wedding music",
     loop: true,
     volume: 0.55,
@@ -70,8 +70,8 @@ export const nithinTejuWedding: WeddingConfig = {
       type: "Mehendi",
       date: "2026-08-28",
       startTime: "15:00",
-      dressCode: "Colorful traditional attire, Mehendi-friendly",
-      note: "Henna, music, dancing, and celebration.",
+      dressCode: "Comfortable wear",
+      note: "Henna, music, gossip and pictures.",
       image: "/weddings/nithin-teju/gallery/inthe_mehendi.jpeg",
       venue: {
         name: "Address here",
@@ -109,7 +109,7 @@ export const nithinTejuWedding: WeddingConfig = {
         { label: "Main Event", startTime: "19:00", endTime: "23:00" },
         { label: "After Party", startTime: "23:00", endTime: "01:00" },
       ],
-      dressCode: "Men - Blazers / Tuxedos, Women - Sharara Suits",
+      dressCode: "Men - Blazers / Tuxedos, Women - Cocktail wear",
       note: "Dinner, cocktails, dancing, and a few happy tears.",
       image:
         "/weddings/nithin-teju/gallery/engagement-portrait.png",
@@ -123,22 +123,34 @@ export const nithinTejuWedding: WeddingConfig = {
   ],
   gallery: [
     {
-      id: "engagement-portrait",
+      id: "houston-wedding-photo",
       type: "photo",
-      title: "Memories",
+      title: "",
       src: "/weddings/nithin-teju/gallery/engagement-portrait.jpeg",
     },
     {
-      id: "proposal",
+      id: "vermont",
       type: "photo",
-      title: "Moments",
-      src: "/weddings/nithin-teju/gallery/the-proposal.jpeg",
+      title: "",
+      src: "/weddings/nithin-teju/gallery/memories_vermont.jpeg",
     },
     {
-      id: "save-the-date",
+      id: "mendocino",
       type: "photo",
-      title: "Save the Date - August 29, 2026",
+      title: "",
       src: "/weddings/nithin-teju/gallery/save-the-date-film.jpeg",
+    },
+    {
+      id: "pandu_cocktail",
+      type: "photo",
+      title: "",
+      src: "/weddings/nithin-teju/gallery/memories_pandu_cocktail.jpeg",
+    },
+    {
+      id: "houston_cocktail",
+      type: "photo",
+      title: "",
+      src: "/weddings/nithin-teju/gallery/memories_houston_cocktail_party.jpeg",
     },
   ],
   livestream: {
