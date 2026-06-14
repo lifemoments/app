@@ -7,7 +7,8 @@ import { InvitationGate } from "./components/InvitationGate";
 import { LiveStream } from "./components/LiveStream";
 import { Rsvp } from "./components/Rsvp";
 import { Story } from "./components/Story";
-import { useCallback, useEffect, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { getThemeStyle } from "./themes";
 import type { WeddingConfig } from "./types";
 import {
@@ -42,6 +43,7 @@ const getRequestedWeddingSlug = (): string => {
 };
 
 function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
+  const musicRef = useRef<HTMLAudioElement>(null);
   const invitationStorageKey = `wedding-invitation-opened:${wedding.slug}`;
   const rememberForSession = wedding.entryInvitation?.rememberForSession ?? true;
   const [hasSeenInvitation] = useState(() => {
@@ -55,6 +57,7 @@ function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
   const [isInvitationVisible, setIsInvitationVisible] = useState(!hasSeenInvitation);
   const [didTransitionFromInvitation, setDidTransitionFromInvitation] = useState(false);
   const [isHeaderRevealed, setIsHeaderRevealed] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   useEffect(() => {
     document.title = `${wedding.couple.displayNames} Wedding`;
@@ -70,6 +73,39 @@ function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
 
   const completeInvitation = useCallback(() => {
     setIsInvitationVisible(false);
+  }, []);
+
+  const playWeddingMusic = useCallback(() => {
+    const audio = musicRef.current;
+
+    if (!audio || !wedding.music) {
+      return;
+    }
+
+    audio.volume = wedding.music.volume ?? 0.55;
+    void audio
+      .play()
+      .then(() => setIsMusicPlaying(true))
+      .catch(() => setIsMusicPlaying(false));
+  }, [wedding.music]);
+
+  const toggleWeddingMusic = useCallback(() => {
+    const audio = musicRef.current;
+
+    if (!audio) {
+      return;
+    }
+
+    if (audio.paused) {
+      void audio
+        .play()
+        .then(() => setIsMusicPlaying(true))
+        .catch(() => setIsMusicPlaying(false));
+      return;
+    }
+
+    audio.pause();
+    setIsMusicPlaying(false);
   }, []);
 
   useEffect(() => {
@@ -103,9 +139,38 @@ function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
       style={getThemeStyle(wedding.theme.name, wedding.theme.overrides)}
     >
       {isInvitationVisible && (
-        <InvitationGate wedding={wedding} onReveal={revealInvitation} onComplete={completeInvitation} />
+        <InvitationGate
+          wedding={wedding}
+          onOpenInvitation={playWeddingMusic}
+          onReveal={revealInvitation}
+          onComplete={completeInvitation}
+        />
       )}
       <Header wedding={wedding} isVisible={isHeaderRevealed} />
+      {wedding.music && (
+        <>
+          <audio
+            ref={musicRef}
+            src={wedding.music.src}
+            loop={wedding.music.loop ?? true}
+            preload="auto"
+            onEnded={() => setIsMusicPlaying(false)}
+            onPause={() => setIsMusicPlaying(false)}
+            onPlay={() => setIsMusicPlaying(true)}
+          />
+          {isInvitationOpen && (
+            <button
+              className="music-control"
+              type="button"
+              onClick={toggleWeddingMusic}
+              aria-label={isMusicPlaying ? "Pause wedding music" : "Play wedding music"}
+              title={wedding.music.title ?? "Wedding music"}
+            >
+              {isMusicPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
+            </button>
+          )}
+        </>
+      )}
       <main>
         <Hero wedding={wedding} />
         <Story wedding={wedding} />

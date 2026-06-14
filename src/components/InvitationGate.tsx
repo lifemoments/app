@@ -5,13 +5,14 @@ import type { WeddingConfig } from "../types";
 
 type InvitationGateProps = {
   wedding: WeddingConfig;
+  onOpenInvitation?: () => void;
   onReveal: () => void;
   onComplete: () => void;
 };
 
 type GatePhase = "sealed" | "opening" | "unfolding" | "expanding" | "exiting";
 
-export function InvitationGate({ wedding, onReveal, onComplete }: InvitationGateProps) {
+export function InvitationGate({ wedding, onOpenInvitation, onReveal, onComplete }: InvitationGateProps) {
   const [phase, setPhase] = useState<GatePhase>("sealed");
   const timersRef = useRef<number[]>([]);
   const config = wedding.entryInvitation;
@@ -30,6 +31,7 @@ export function InvitationGate({ wedding, onReveal, onComplete }: InvitationGate
     }
 
     setPhase("opening");
+    onOpenInvitation?.();
     timersRef.current = [
       window.setTimeout(() => setPhase("unfolding"), 620),
       window.setTimeout(() => setPhase("expanding"), 1_280),
