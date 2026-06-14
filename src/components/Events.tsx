@@ -66,7 +66,7 @@ export function Events({ events, timeZone }: EventsProps) {
                           </li>
                         ) : (
                           <li key={i} className="time-continuation">
-                            <span className="time-dash">— </span>
+                            <span className="time-icon-spacer" aria-hidden="true" />
                             <span>
                               {range.label ? `${range.label}: ` : ""}
                               {formatTime(event.date, range.startTime)}

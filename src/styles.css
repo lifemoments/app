@@ -679,17 +679,16 @@ h3 {
   color: #51484b;
 }
 
-.event-body .time-continuation {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 34px; /* aligns under the time text, keeping clock icon column clear */
-  color: #51484b;
+.time-icon-spacer {
+  width: 18px;
+  min-width: 18px;
 }
 
-.event-body .time-continuation .time-dash {
-  color: rgba(81, 72, 75, 0.8);
-  font-weight: 700;
+.event-body .time-continuation {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #51484b;
 }
 
 .event-location {
