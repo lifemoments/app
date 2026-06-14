@@ -637,6 +637,10 @@ h3 {
   object-position: center;
 }
 
+.event-card.event-card-reception img {
+  object-position: center 24%;
+}
+
 .event-body,
 .venue-body,
 .live-details {
