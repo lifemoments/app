@@ -23,7 +23,7 @@ export const nithinTejuWedding: WeddingConfig = {
   },
   weddingDate: "2026-08-29T09:30:00-04:00",
   timeZone: "America/New_York",
-  heroImage: "/weddings/nithin-teju/gallery/official_opener3.jpeg",
+  heroImage: "/weddings/nithin-teju/gallery/official_opener.png",
   theme: {
     name: "rose",
   },
@@ -38,7 +38,7 @@ export const nithinTejuWedding: WeddingConfig = {
     eyebrow: "A celebration awaits",
     message: "Together with their families, invite you to celebrate their wedding.",
     openLabel: "Open invitation",
-    backgroundImage: "/weddings/nithin-teju/gallery/save-the-date-film.png",
+    backgroundImage: "/weddings/nithin-teju/gallery/official_opener.png",
     rememberForSession: false,
   },
   music: {
@@ -56,7 +56,7 @@ export const nithinTejuWedding: WeddingConfig = {
       startTime: "17:00",
       dressCode: "Biege, Yellow, or Florals",
       note: "Expect turmeric, games, laughter, and sunlight.",
-      image: "/weddings/nithin-teju/gallery/haldi%20vertical.jpeg",
+      image: "/weddings/nithin-teju/gallery/haldi_vertical.jpeg",
       venue: {
         name: "Address here",
         address: "Address here",
@@ -89,8 +89,7 @@ export const nithinTejuWedding: WeddingConfig = {
       endTime: "12:30",
       dressCode: "Traditional Indian Attire",
       note: "Muhurtham is at 10:01 AM.",
-      image:
-        "/weddings/nithin-teju/gallery/wedding.jpeg",
+      image: "/weddings/nithin-teju/gallery/wedding_portrait.jpeg",
       venue: {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",
@@ -111,8 +110,7 @@ export const nithinTejuWedding: WeddingConfig = {
       ],
       dressCode: "Men - Blazers / Tuxedos, Women - Cocktail wear",
       note: "Dinner, cocktails, dancing, and a few happy tears.",
-      image:
-        "/weddings/nithin-teju/gallery/engagement-portrait.png",
+      image: "/weddings/nithin-teju/gallery/cocktail_party_portrait.png",
       venue: {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",

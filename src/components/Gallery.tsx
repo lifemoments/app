@@ -1,4 +1,4 @@
-import { Image, PlayCircle, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useState } from "react";
 import type { MediaItem } from "../types";
 import Slideshow from "./Slideshow";
@@ -23,10 +23,6 @@ export function Gallery({ items }: GalleryProps) {
           {items.map((item) => (
             <button className="media-tile" key={item.id} type="button" onClick={() => setActiveItem(item)}>
               <img src={item.poster ?? item.src} alt={item.title} />
-              <span>
-                {item.type === "photo" ? <Image size={18} /> : <PlayCircle size={18} />}
-                {item.title}
-              </span>
             </button>
           ))}
         </div>
@@ -47,7 +43,7 @@ export function Gallery({ items }: GalleryProps) {
                 allowFullScreen
               />
             )}
-            <h3>{activeItem.title}</h3>
+            {activeItem.title && <h3>{activeItem.title}</h3>}
           </div>
         </div>
       )}

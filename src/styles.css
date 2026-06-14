@@ -615,14 +615,15 @@ h3 {
 
 .event-card {
   display: grid;
-  grid-template-columns: 0.82fr 1fr;
-  min-height: 328px;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1fr);
+  min-height: 420px;
 }
 
 .event-card img {
   width: 100%;
   height: 100%;
-  min-height: 260px;
+  min-height: 420px;
+  aspect-ratio: 2 / 3;
   object-fit: contain;
   object-position: center;
   background: color-mix(in srgb, var(--paper) 92%, var(--accent));
@@ -1817,7 +1818,7 @@ body.invitation-locked {
   }
 
   .event-card img {
-    aspect-ratio: auto;
+    aspect-ratio: 2 / 3;
     min-height: 0;
     object-fit: contain;
   }
@@ -2012,8 +2013,9 @@ body.invitation-locked {
 
   .event-card img {
     width: 100%;
-    height: clamp(300px, 112vw, 540px);
+    height: auto;
     max-height: none;
+    aspect-ratio: 2 / 3;
     object-fit: contain;
     object-position: center;
     background: color-mix(in srgb, var(--paper) 92%, var(--accent));
@@ -2331,7 +2333,8 @@ body.invitation-locked {
   }
 
   .event-card img {
-    height: clamp(290px, 118vw, 480px);
+    height: auto;
+    aspect-ratio: 2 / 3;
   }
 
   .form-actions,
