@@ -110,7 +110,7 @@ export const nithinTejuWedding: WeddingConfig = {
       ],
       dressCode: "Men - Blazers / Tuxedos, Women - Cocktail wear",
       note: "Dinner, Cocktails and Dancing.",
-      image: "/weddings/nithin-teju/gallery/cocktail_party_portrait.png",
+      image: "/weddings/nithin-teju/gallery/cocktail_party_portrait_updated.jpeg",
       venue: {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",
