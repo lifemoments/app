@@ -23,8 +23,7 @@ export const nithinTejuWedding: WeddingConfig = {
   },
   weddingDate: "2026-08-29T09:30:00-04:00",
   timeZone: "America/New_York",
-  heroImage:
-    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=85",
+  heroImage: "/weddings/nithin-teju/gallery/official_opener3.jpeg",
   theme: {
     name: "rose",
   },
@@ -45,13 +44,13 @@ export const nithinTejuWedding: WeddingConfig = {
   events: [
     {
       id: "haldi",
-      title: "Haldi",
+      title: "Haldi Carnival",
       type: "Ceremony",
       date: "2026-08-27",
       startTime: "17:00",
       dressCode: "Biege, Yellow, or Florals",
       note: "Expect turmeric, games, laughter, and sunlight.",
-      image: "/weddings/nithin-teju/gallery/haldi%20photo.jpg",
+      image: "/weddings/nithin-teju/gallery/haldi%20vertical.jpeg",
       venue: {
         name: "Address here",
         address: "Address here",
@@ -83,9 +82,9 @@ export const nithinTejuWedding: WeddingConfig = {
       startTime: "09:30",
       endTime: "12:30",
       dressCode: "Traditional Indian Attire",
-      note: "The actual jeelakarra-bellam (Cumin-Jaggery) muhurtham is 10:01 AM.",
+      note: "Muhurtham is at 10:01 AM.",
       image:
-        "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80",
+        "/weddings/nithin-teju/gallery/wedding.jpeg",
       venue: {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",
@@ -107,7 +106,7 @@ export const nithinTejuWedding: WeddingConfig = {
       dressCode: "Men - Blazers / Tuxedos, Women - Sharara Suits",
       note: "Dinner, cocktails, dancing, and a few happy tears.",
       image:
-        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
+        "/weddings/nithin-teju/gallery/engagement-portrait.png",
       venue: {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",

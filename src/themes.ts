@@ -14,7 +14,7 @@ const themePresets: Record<WeddingThemeName, ThemeTokens> = {
     dark: "#322a2d",
     darkAccent: "#ffc9d1",
     heroOverlay:
-      "linear-gradient(90deg, rgba(22, 14, 16, 0.82), rgba(22, 14, 16, 0.45) 52%, rgba(22, 14, 16, 0.2)), linear-gradient(180deg, rgba(22, 14, 16, 0.25), rgba(22, 14, 16, 0.64))",
+      "linear-gradient(90deg, rgba(22, 14, 16, 0.25), rgba(22, 14, 16, 0.15) 52%, rgba(22, 14, 16, 0.04)), linear-gradient(180deg, rgba(22, 14, 16, 0.02), rgba(22, 14, 16, 0.14))",
   },
   emerald: {
     accent: "#24745f",
