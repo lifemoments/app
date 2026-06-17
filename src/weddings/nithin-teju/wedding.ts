@@ -23,7 +23,7 @@ export const nithinTejuWedding: WeddingConfig = {
   },
   weddingDate: "2026-08-29T09:30:00-04:00",
   timeZone: "America/New_York",
-  heroImage: "/weddings/nithin-teju/gallery/official_opener3.jpeg",
+  heroImage: "/weddings/nithin-teju/gallery/official_opener.png",
   theme: {
     name: "rose",
   },
@@ -37,8 +37,8 @@ export const nithinTejuWedding: WeddingConfig = {
     enabled: true,
     eyebrow: "A celebration awaits",
     message: "Together with their families, invite you to celebrate their wedding.",
-    openLabel: "Open invitation",
-    backgroundImage: "/weddings/nithin-teju/gallery/save-the-date-film.png",
+    openLabel: "Open Invitation",
+    backgroundImage: "/weddings/nithin-teju/gallery/official_opener.png",
     rememberForSession: false,
   },
   music: {
@@ -55,8 +55,8 @@ export const nithinTejuWedding: WeddingConfig = {
       date: "2026-08-27",
       startTime: "17:00",
       dressCode: "Biege, Yellow, or Florals",
-      note: "Expect turmeric, games, laughter, and sunlight.",
-      image: "/weddings/nithin-teju/gallery/haldi%20vertical.jpeg",
+      note: "Expect Turmeric, Games, Laughter, and Sunlight.",
+      image: "/weddings/nithin-teju/gallery/haldi_portrait.png",
       venue: {
         name: "Address here",
         address: "Address here",
@@ -71,8 +71,8 @@ export const nithinTejuWedding: WeddingConfig = {
       date: "2026-08-28",
       startTime: "15:00",
       dressCode: "Comfortable wear",
-      note: "Henna, music, gossip and pictures.",
-      image: "/weddings/nithin-teju/gallery/inthe_mehendi.jpeg",
+      note: "Henna, Music, Gossip and Pictures.",
+      image: "/weddings/nithin-teju/gallery/mehendi_portrait_2.png",
       venue: {
         name: "Address here",
         address: "Address here",
@@ -89,8 +89,7 @@ export const nithinTejuWedding: WeddingConfig = {
       endTime: "12:30",
       dressCode: "Traditional Indian Attire",
       note: "Muhurtham is at 10:01 AM.",
-      image:
-        "/weddings/nithin-teju/gallery/wedding.jpeg",
+      image: "/weddings/nithin-teju/gallery/wedding_portrait.jpeg",
       venue: {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",
@@ -110,9 +109,8 @@ export const nithinTejuWedding: WeddingConfig = {
         { label: "After Party", startTime: "23:00", endTime: "01:00" },
       ],
       dressCode: "Men - Blazers / Tuxedos, Women - Cocktail wear",
-      note: "Dinner, cocktails, dancing, and a few happy tears.",
-      image:
-        "/weddings/nithin-teju/gallery/engagement-portrait.png",
+      note: "Dinner, Cocktails and Dancing.",
+      image: "/weddings/nithin-teju/gallery/cocktail_party_portrait_updated.jpeg",
       venue: {
         name: "Reflections Event Space",
         address: "215 Advantage Dr Suite 100",
@@ -162,13 +160,13 @@ export const nithinTejuWedding: WeddingConfig = {
     deadline: "2026-08-15",
     contactName: "Yash",
     contactPhone: "+1 469-996-4010",
+    maxGuests: 4,
     googleFormUrl:
       "https://docs.google.com/forms/d/e/1FAIpQLSftaxwdHRtQc6H5BRk2DT9zWrbzeaowBzrMR6XAbpknZPauzA/viewform?usp=publish-editor",
     googleFormEmbedUrl:
       "https://docs.google.com/forms/d/e/1FAIpQLSftaxwdHRtQc6H5BRk2DT9zWrbzeaowBzrMR6XAbpknZPauzA/viewform?embedded=true",
     googleFormFieldIds: {
       fullName: "entry.280492329",
-      email: "entry.508149769",
       phone: "entry.968995082",
       attendance: "entry.716561151",
       guests: "entry.625161931",

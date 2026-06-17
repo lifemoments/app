@@ -19,7 +19,7 @@ const emptySubmission = (eventIds: string[]): RsvpSubmission => ({
 });
 
 const minGuests = 1;
-const maxGuests = 20;
+const defaultMaxGuests = 20;
 
 const getGoogleFormActionUrl = (formUrl: string) => formUrl.split("/viewform")[0] + "/formResponse";
 
@@ -33,7 +33,6 @@ const hasRequiredGoogleFormFields = (rsvp: WeddingConfig["rsvp"]) =>
   Boolean(
     rsvp.googleFormUrl &&
       rsvp.googleFormFieldIds?.fullName &&
-      rsvp.googleFormFieldIds.email &&
       rsvp.googleFormFieldIds.attendance &&
       rsvp.googleFormFieldIds.guests &&
       rsvp.googleFormFieldIds.events,
@@ -43,6 +42,7 @@ export function Rsvp({ wedding }: RsvpProps) {
   const hasGoogleFormDirectSubmit = hasRequiredGoogleFormFields(wedding.rsvp);
   const isGoogleFormRsvp = !hasGoogleFormDirectSubmit && Boolean(wedding.rsvp.googleFormUrl || wedding.rsvp.googleFormEmbedUrl);
   const googleFormUrl = wedding.rsvp.googleFormUrl ?? wedding.rsvp.googleFormEmbedUrl;
+  const maxGuests = wedding.rsvp.maxGuests ?? defaultMaxGuests;
   const eventIds = useMemo(() => wedding.events.map((event) => event.id), [wedding.events]);
   const storageKey = `wedding-rsvp:${wedding.slug}`;
   const [submission, setSubmission] = useState<RsvpSubmission>(() => {
@@ -97,6 +97,8 @@ export function Rsvp({ wedding }: RsvpProps) {
       const optionLabels = wedding.rsvp.googleFormOptionLabels;
       const formData = new URLSearchParams();
 
+      // Google Forms uses this reserved field when email collection is set to responder input.
+      appendIfPresent(formData, "emailAddress", submission.email);
       appendIfPresent(formData, fieldIds.fullName, submission.name);
       appendIfPresent(formData, fieldIds.email, submission.email);
       appendIfPresent(formData, fieldIds.phone, submission.phone);
@@ -190,16 +192,12 @@ export function Rsvp({ wedding }: RsvpProps) {
               </span>
               <div>
                 <h3>Guest details</h3>
-                <p>
-                  1. One response per household.
-                  <br />
-                  2. Kindly submit a response, even if your answer is “No” or “Maybe”.
-                </p>
+                <p>One response per household. Please reply even if your answer is “No” or “Maybe”.</p>
               </div>
             </div>
             <div className="form-grid">
               <label>
-                <span>Full name</span>
+                <span>Full Name</span>
                 <input
                   required
                   autoComplete="name"
@@ -231,7 +229,7 @@ export function Rsvp({ wedding }: RsvpProps) {
                 />
               </label>
               <label>
-                <span>Number of guests</span>
+                <span>Number of Guests</span>
                 <div className="stepper">
                   <button type="button" aria-label="Decrease guests" onClick={() => update("guests", Math.max(1, submission.guests - 1))}>
                     <Minus size={16} />
@@ -242,8 +240,8 @@ export function Rsvp({ wedding }: RsvpProps) {
                   </button>
                 </div>
               </label>
-              <label>
-                <span>Guest(s) names <small>(optional)</small></span>
+              <label className="guest-names-field">
+                <span>Guest(s) Names <small>(Optional)</small></span>
                 <input
                   value={submission.guestNames}
                   onChange={(event) => update("guestNames", event.target.value)}
@@ -258,12 +256,12 @@ export function Rsvp({ wedding }: RsvpProps) {
                 <CalendarCheck2 size={18} />
               </span>
               <div>
-                <h3>Your plans</h3>
+                <h3>Your Plans</h3>
                 <p>Tell us which celebrations to expect you at.</p>
               </div>
             </div>
             <fieldset className="attendance">
-              <legend>Can you attend?</legend>
+              <legend>Can You Attend?</legend>
               {(["yes", "maybe", "no"] as Attendance[]).map((option) => (
                 <label key={option}>
                   <input
@@ -278,7 +276,7 @@ export function Rsvp({ wedding }: RsvpProps) {
               ))}
             </fieldset>
             <fieldset className="event-picker">
-              <legend>Events attending</legend>
+              <legend>Events Attending</legend>
               {wedding.events.map((event) => (
                 <label key={event.id}>
                   <input

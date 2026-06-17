@@ -387,9 +387,7 @@ h3 {
   width: min(600px, 100%);
   max-width: 600px;
   min-height: 220px;
-  margin: 28px auto 0;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 40px auto 0;
   overflow: visible;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
@@ -615,17 +613,30 @@ h3 {
 
 .event-card {
   display: grid;
-  grid-template-columns: 0.82fr 1fr;
-  min-height: 328px;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1fr);
+  min-height: 420px;
 }
 
 .event-card img {
   width: 100%;
   height: 100%;
-  min-height: 260px;
+  min-height: 420px;
+  aspect-ratio: 2 / 3;
   object-fit: contain;
   object-position: center;
   background: color-mix(in srgb, var(--paper) 92%, var(--accent));
+}
+
+.event-card.event-card-haldi img,
+.event-card.event-card-mehendi img,
+.event-card.event-card-wedding img,
+.event-card.event-card-reception img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.event-card.event-card-reception img {
+  object-position: center 24%;
 }
 
 .event-body,
@@ -666,17 +677,16 @@ h3 {
   color: #51484b;
 }
 
-.event-body .time-continuation {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 34px; /* aligns under the time text, keeping clock icon column clear */
-  color: #51484b;
+.time-icon-spacer {
+  width: 18px;
+  min-width: 18px;
 }
 
-.event-body .time-continuation .time-dash {
-  color: rgba(81, 72, 75, 0.8);
-  font-weight: 700;
+.event-body .time-continuation {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #51484b;
 }
 
 .event-location {
@@ -829,12 +839,8 @@ h3 {
 .rsvp-form-section {
   display: grid;
   align-content: start;
-  gap: 26px;
-  padding: clamp(24px, 4vw, 40px);
-}
-
-.guest-details {
-  align-content: center;
+  gap: 22px;
+  padding: clamp(24px, 3vw, 32px);
 }
 
 .attendance-details {
@@ -844,7 +850,8 @@ h3 {
 
 .form-section-heading {
   display: flex;
-  align-items: center;
+  min-height: 54px;
+  align-items: flex-start;
   gap: 12px;
 }
 
@@ -861,7 +868,8 @@ h3 {
 .form-section-heading p {
   margin-top: 3px;
   color: rgba(255, 250, 245, 0.62);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
+  line-height: 1.4;
 }
 
 .form-section-icon {
@@ -914,7 +922,11 @@ h3 {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px 16px;
+  gap: 16px;
+}
+
+.guest-names-field {
+  grid-column: 1 / -1;
 }
 
 label,
@@ -1048,7 +1060,7 @@ legend {
   justify-content: space-between;
   gap: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 20px clamp(24px, 4vw, 40px);
+  padding: 16px clamp(24px, 3vw, 32px);
   background: rgba(0, 0, 0, 0.08);
 }
 
@@ -1194,6 +1206,7 @@ legend {
 }
 
 .video-frame iframe {
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   border: 0;
@@ -1792,6 +1805,41 @@ body.invitation-locked {
     background-position: center top;
   }
 
+  .section.live-section {
+    padding: 56px 12px 24px;
+  }
+
+  .live-section .section-heading {
+    margin-bottom: 20px;
+    padding: 0 8px;
+  }
+
+  .live-section .live-layout {
+    gap: 14px;
+  }
+
+  .live-section .video-frame iframe {
+    aspect-ratio: 16 / 9.5;
+  }
+
+  .live-section .live-details {
+    gap: 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .live-section .live-details p {
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .live-section .live-details .primary-button {
+    min-height: 54px;
+  }
+
   .story,
   .event-card,
   .event-grid,
@@ -1817,7 +1865,7 @@ body.invitation-locked {
   }
 
   .event-card img {
-    aspect-ratio: auto;
+    aspect-ratio: 2 / 3;
     min-height: 0;
     object-fit: contain;
   }
@@ -1888,6 +1936,40 @@ body.invitation-locked {
     align-items: end;
   }
 
+  .hero-nithin-teju .hero-content {
+    position: static;
+  }
+
+  .hero-nithin-teju .hero-copy {
+    position: absolute;
+    bottom: 310px;
+    left: 20px;
+    width: min(58vw, 260px);
+  }
+
+  .hero-nithin-teju .eyebrow {
+    margin-bottom: 8px;
+    font-size: 0.66rem;
+  }
+
+  .hero-nithin-teju h1 {
+    max-width: none;
+    font-size: clamp(2.35rem, 11vw, 3rem);
+    line-height: 0.94;
+  }
+
+  .hero-nithin-teju .hero-portmanteau {
+    margin-top: 3px;
+    font-size: clamp(0.72rem, 3.2vw, 0.9rem);
+    text-align: left;
+  }
+
+  .hero-nithin-teju .hero-tagline {
+    margin-top: 12px;
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
   .hero-overlay {
     background: var(--hero-overlay);
   }
@@ -1939,13 +2021,14 @@ body.invitation-locked {
   }
 
   .scratch-reveal {
-    width: 100%;
-    min-height: 238px;
-    margin-top: 22px;
+    width: calc(100% + 12px);
+    min-height: 250px;
+    margin-top: 10px;
+    margin-left: -6px;
   }
 
   .scratch-content {
-    min-height: 238px;
+    min-height: 250px;
     gap: 16px;
     padding: 18px 14px;
   }
@@ -2012,8 +2095,9 @@ body.invitation-locked {
 
   .event-card img {
     width: 100%;
-    height: clamp(300px, 112vw, 540px);
+    height: auto;
     max-height: none;
+    aspect-ratio: 2 / 3;
     object-fit: contain;
     object-position: center;
     background: color-mix(in srgb, var(--paper) 92%, var(--accent));
@@ -2269,11 +2353,11 @@ body.invitation-locked {
   }
 
   .scratch-reveal {
-    min-height: 228px;
+    min-height: 240px;
   }
 
   .scratch-content {
-    min-height: 228px;
+    min-height: 240px;
   }
 
   .event-body,
@@ -2303,6 +2387,16 @@ body.invitation-locked {
     padding-left: 16px;
   }
 
+  .hero-nithin-teju .hero-copy {
+    bottom: 276px;
+    left: 16px;
+    width: min(62vw, 242px);
+  }
+
+  .hero-nithin-teju h1 {
+    font-size: clamp(2.15rem, 10.5vw, 2.55rem);
+  }
+
   h1 {
     font-size: clamp(2.8rem, 14vw, 3.7rem);
   }
@@ -2313,12 +2407,12 @@ body.invitation-locked {
   }
 
   .scratch-reveal {
-    min-height: 218px;
-    margin-top: 16px;
+    min-height: 230px;
+    margin-top: 6px;
   }
 
   .scratch-content {
-    min-height: 218px;
+    min-height: 230px;
     padding: 14px 10px;
   }
 
@@ -2331,7 +2425,8 @@ body.invitation-locked {
   }
 
   .event-card img {
-    height: clamp(290px, 118vw, 480px);
+    height: auto;
+    aspect-ratio: 2 / 3;
   }
 
   .form-actions,

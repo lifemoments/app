@@ -69,7 +69,6 @@ export function Slideshow({ items, interval = 3000 }: SlideshowProps) {
         {items.map((it) => (
           <div className="slide" key={it.id}>
             <img src={it.src} alt={it.title} />
-            <div className="slide-caption">{it.title}</div>
           </div>
         ))}
       </div>
