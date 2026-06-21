@@ -14,7 +14,7 @@ export function Gallery({ items }: GalleryProps) {
     <section id="gallery" className="section gallery-section">
       <div className="section-heading">
         <p className="eyebrow">Photos and films</p>
-        <h2>Memories before the big day.</h2>
+        <h2>Pictures are on deck! Please check back soon..</h2>
       </div>
       {items.length === 3 && items.every((it) => it.type === "photo") ? (
         <Slideshow items={items} interval={3000} />
